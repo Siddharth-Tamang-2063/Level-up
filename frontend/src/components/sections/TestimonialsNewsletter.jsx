@@ -13,7 +13,7 @@ export function Testimonials() {
       <div className="absolute top-8 left-8 lg:left-16 font-display text-[10rem] text-cream/5 leading-none select-none pointer-events-none">"</div>
 
       <div className="relative mb-14">
-        <SectionHeader overline="What Customers Say" title="Loved Across Nepal" light centered />
+        <SectionHeader overline="What Customers Say" title="Trusted Across Nepal" light centered />
       </div>
 
       {/* Row 1 — scrolls left */}
@@ -53,8 +53,8 @@ export function Testimonials() {
       <div className="mt-20 border-t border-cream/5">
         <div className="max-w-5xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { label: 'Happy Customers', value: '10K+' },
-            { label: 'Cities in Nepal', value: '50+' },
+            { label: 'Happy Customers', value: '8K+' },
+            { label: 'Cities in Nepal', value: '60+' },
             { label: 'Years in Business', value: '5+' },
             { label: 'Average Rating', value: '4.9★' },
           ].map(stat => (

@@ -28,8 +28,8 @@ export default function PromoBanner() {
         {/* Left - Image */}
         <div className="relative overflow-hidden aspect-[4/3] md:aspect-auto">
           <img
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80"
-            alt="Sale collection"
+            src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=800&q=80"
+            alt="Footwear sale"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal/20" />
@@ -42,7 +42,7 @@ export default function PromoBanner() {
             <h2 className="font-display text-5xl md:text-6xl font-light text-cream mb-2">Up to</h2>
             <div className="font-display text-8xl md:text-9xl font-light text-sand leading-none mb-6">40%</div>
             <p className="font-sans text-cream/60 text-lg font-light mb-8">
-              Big discount on selected items. Limited stock — order now before it runs out.
+              Big discounts on sneakers, boots, and sandals. Limited pairs — grab your size before it sells out.
             </p>
 
             {/* Countdown */}

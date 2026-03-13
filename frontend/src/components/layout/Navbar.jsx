@@ -7,19 +7,19 @@ import logo from '../../assets/logo.jpeg'
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
-  { label: 'Men', href: '/collection?gender=men', sub: [
-    { label: 'New In', href: '/collection?gender=men&filter=new' },
-    { label: 'Hoodies', href: '/collection?category=hoodies' },
-    { label: 'Jackets', href: '/collection?category=jackets' },
-    { label: 'T-Shirts', href: '/collection?category=tshirts' },
-    { label: 'Trousers', href: '/collection?category=pants' },
+  { label: 'Sneakers', href: '/collection?category=sneakers', sub: [
+    { label: 'New In', href: '/collection?category=sneakers&filter=new' },
+    { label: 'Classic', href: '/collection?category=sneakers' },
+    { label: 'High-Top', href: '/collection?category=sneakers' },
+    { label: 'Sports', href: '/collection?category=sports' },
+    { label: 'Canvas', href: '/collection?category=sneakers' },
   ]},
-  { label: 'Women', href: '/collection?gender=women', sub: [
-    { label: 'New In', href: '/collection?gender=women&filter=new' },
-    { label: 'Dresses', href: '/collection?category=dresses' },
-    { label: 'Jackets', href: '/collection?category=jackets' },
-    { label: 'Hoodies', href: '/collection?category=hoodies' },
-    { label: 'Trousers', href: '/collection?category=pants' },
+  { label: 'Boots', href: '/collection?category=boots', sub: [
+    { label: 'New In', href: '/collection?category=boots&filter=new' },
+    { label: 'Chelsea Boots', href: '/collection?category=boots' },
+    { label: 'Hiking Boots', href: '/collection?category=boots' },
+    { label: 'Winter Boots', href: '/collection?category=boots' },
+    { label: 'Sandals', href: '/collection?category=sandals' },
   ]},
   { label: 'Sale', href: '/collection?filter=sale', accent: true },
   { label: 'Contact', href: '/contact' },
@@ -63,14 +63,14 @@ export default function Navbar() {
         {/* Announcement bar */}
         <div className="bg-charcoal text-cream py-2.5 px-4 text-xs tracking-widest uppercase font-sans overflow-hidden">
           {/* Desktop - static centered */}
-          <p className="hidden md:block text-center">Free delivery inside Pokhara · Cash on Delivery Available · Delivery all over Nepal</p>
+          <p className="hidden md:block text-center">Free Delivery in KTM Valley · Cash on Delivery · Ships All Over Nepal</p>
 
           {/* Mobile - marquee */}
           <div className="md:hidden relative overflow-hidden">
             <div className="flex whitespace-nowrap announcement-marquee">
               {[0,1].map(i => (
                 <span key={i} className="flex items-center gap-6 pr-6">
-                  <span>🚚 Free Delivery in Pokhara</span>
+                  <span>🚚 Free KTM Delivery</span>
                   <span className="text-sand/60">✦</span>
                   <span>💵 Cash on Delivery Available</span>
                   <span className="text-sand/60">✦</span>
@@ -117,7 +117,7 @@ export default function Navbar() {
               >
                 <img
                   src={logo}
-                  alt="Level Up Fashion"
+                  alt="KADAM Nepal"
                   className="h-10 md:h-14 w-auto object-contain"
                 />
               </Link>
@@ -258,7 +258,7 @@ export default function Navbar() {
             <div className="p-6">
               {/* Drawer header */}
               <div className="flex items-center justify-between mb-8">
-                <img src={logo} alt="Level Up Fashion" className="h-10 w-auto object-contain" />
+                <img src={logo} alt="KADAM Nepal" className="h-10 w-auto object-contain" />
                 <button onClick={() => setMenuOpen(false)} className="text-charcoal p-1">
                   <X size={20} />
                 </button>

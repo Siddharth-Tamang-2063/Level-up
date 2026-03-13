@@ -4,12 +4,12 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { COLLECTIONS } from '../../data/products'
 
 const MARQUEE_ITEMS = [
-  'Cash on Delivery Available', '✦', 'New Collection 2025', '✦',
-  'Delivery All Over Nepal', '✦', 'Easy Exchange Policy', '✦',
-  'New Arrivals Every Week', '✦', 'Quality Clothing', '✦',
-  'Cash on Delivery Available', '✦', 'New Collection 2025', '✦',
-  'Delivery All Over Nepal', '✦', 'Easy Exchange Policy', '✦',
-  'New Arrivals Every Week', '✦', 'Quality Clothing', '✦',
+  'Cash on Delivery Available', '✦', 'New Arrivals 2025', '✦',
+  'Delivery All Over Nepal', '✦', 'Easy Size Exchange', '✦',
+  'Genuine Leather Footwear', '✦', 'Trek & Hiking Boots', '✦',
+  'Cash on Delivery Available', '✦', 'New Arrivals 2025', '✦',
+  'Delivery All Over Nepal', '✦', 'Easy Size Exchange', '✦',
+  'Genuine Leather Footwear', '✦', 'Trek & Hiking Boots', '✦',
 ]
 
 export function Marquee() {

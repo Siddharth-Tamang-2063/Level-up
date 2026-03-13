@@ -6,16 +6,16 @@ const FOOTER_LINKS = {
   Shop: [
     { label: 'New Arrivals', href: '/collection?filter=new' },
     { label: 'Best Sellers', href: '/collection?filter=bestseller' },
-    { label: 'Hoodies', href: '/collection?category=hoodies' },
-    { label: 'Jackets', href: '/collection?category=jackets' },
-    { label: 'T-Shirts', href: '/collection?category=tshirts' },
-    { label: 'Trousers', href: '/collection?category=pants' },
+    { label: 'Sneakers', href: '/collection?category=sneakers' },
+    { label: 'Boots', href: '/collection?category=boots' },
+    { label: 'Sandals', href: '/collection?category=sandals' },
+    { label: 'Formals', href: '/collection?category=formals' },
     { label: 'Sale', href: '/collection?filter=sale' },
   ],
   Help: [
     { label: 'Contact Us', href: '/contact' },
+    { label: 'Size Guide & Fit', href: '/contact' },
     { label: 'Delivery & Exchange', href: '/contact' },
-    { label: 'Size Guide', href: '/contact' },
     { label: 'Track Your Order', href: '/contact' },
     { label: 'FAQ', href: '/contact' },
   ],
@@ -52,10 +52,10 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link to="/" className="block mb-6">
-              <span className="font-display text-3xl font-light tracking-[0.25em] text-cream">LUXE</span>
+              <span className="font-display text-3xl font-light tracking-[0.25em] text-cream">KADAM</span>
             </Link>
             <p className="font-sans text-sm font-light text-cream/60 leading-relaxed max-w-xs mb-8">
-              Good quality clothing for everyday Nepal. We deliver across the country — fast shipping in Kathmandu Valley and Cash on Delivery available nationwide.
+              Quality footwear for everyday Nepal. Sneakers, boots, sandals and formals — delivered to your door. Cash on Delivery available nationwide.
             </p>
 
             {/* Newsletter */}
@@ -113,7 +113,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-cream/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-sans text-cream/30">© 2025 LUXE Nepal. All rights reserved.</p>
+          <p className="text-xs font-sans text-cream/30">© 2025 KADAM Nepal. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
             {['Privacy Policy', 'Terms of Service', 'Exchange Policy'].map(t => (
