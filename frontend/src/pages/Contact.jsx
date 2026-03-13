@@ -31,7 +31,7 @@ export default function Contact() {
           <div className="space-y-10">
             {[
               { Icon: MapPin, title: 'Visit Us', lines: ['12 Rue du Faubourg', 'Paris, France 75008'] },
-              { Icon: Mail, title: 'Email Us', lines: ['hello@luxe.com', 'support@luxe.com'] },
+              { Icon: Mail, title: 'Email Us', lines: ['hello@levelup.com', 'support@levelup.com'] },
               { Icon: Phone, title: 'Call Us', lines: ['+33 1 23 45 67 89', 'Mon–Fri 9am–6pm CET'] },
               { Icon: Clock, title: 'Hours', lines: ['Monday–Friday: 9–18h', 'Saturday: 10–16h'] },
             ].map(({ Icon, title, lines }) => (
@@ -48,7 +48,7 @@ export default function Contact() {
 
             {/* Socials */}
             <div>
-              <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Follow LUXE</p>
+              <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Follow levelup</p>
               <div className="flex gap-3">
                 {[
                   { Icon: Instagram, label: 'Instagram', href: '#' },
@@ -139,7 +139,7 @@ export default function Contact() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="LUXE Store Location"
+              title="levelup Store Location"
             />
           </div>
         </div>

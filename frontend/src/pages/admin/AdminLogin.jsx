@@ -29,7 +29,7 @@ export default function AdminLogin() {
       <div className="relative w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-10">
-          <span className="font-display text-4xl font-light tracking-[0.3em] text-cream">LUXE</span>
+          <span className="font-display text-4xl font-light tracking-[0.3em] text-cream">levelup</span>
           <p className="text-xs tracking-ultra uppercase font-sans text-cream/30 mt-2">Admin Portal</p>
         </div>
 

@@ -82,7 +82,7 @@ export default function AdminDashboard() {
         {/* Page header */}
         <div className="mb-8">
           <h1 className="font-sans text-2xl font-semibold text-charcoal">Dashboard</h1>
-          <p className="text-sm text-charcoal/50 font-sans mt-1">Welcome back. Here's what's happening with LUXE today.</p>
+          <p className="text-sm text-charcoal/50 font-sans mt-1">Welcome back. Here's what's happening with Level Up Fashion today.</p>
         </div>
 
         {/* Stats Grid */}

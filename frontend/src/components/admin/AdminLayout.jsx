@@ -34,7 +34,7 @@ export default function AdminLayout({ children }) {
                 <TrendingUp size={14} className="text-white" />
               </div>
               <div>
-                <p className="font-display text-xl font-light text-cream tracking-wider">LUXE</p>
+                <p className="font-display text-xl font-light text-cream tracking-wider">Level Up</p>
                 <p className="text-[10px] tracking-widest uppercase text-cream/30 font-sans -mt-0.5">Admin Panel</p>
               </div>
             </Link>
@@ -101,7 +101,7 @@ export default function AdminLayout({ children }) {
               </div>
               <div className="hidden md:block">
                 <p className="text-xs font-medium font-sans text-charcoal">Admin</p>
-                <p className="text-[10px] text-charcoal/40 font-sans">admin@luxe.com</p>
+                <p className="text-[10px] text-charcoal/40 font-sans">admin@levelupfashion.com</p>
               </div>
             </div>
           </div>

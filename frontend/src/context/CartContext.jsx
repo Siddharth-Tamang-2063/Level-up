@@ -44,13 +44,13 @@ const cartReducer = (state, action) => {
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] }, () => {
     try {
-      const saved = localStorage.getItem('luxe_cart')
+      const saved = localStorage.getItem('levelup_cart')
       return saved ? JSON.parse(saved) : { items: [] }
     } catch { return { items: [] } }
   })
 
   useEffect(() => {
-    localStorage.setItem('luxe_cart', JSON.stringify(state))
+    localStorage.setItem('levelup_cart', JSON.stringify(state))
   }, [state])
 
   const addItem = (product, size, qty = 1) => {
