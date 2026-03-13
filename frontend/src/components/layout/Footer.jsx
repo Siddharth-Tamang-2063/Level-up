@@ -52,7 +52,8 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link to="/" className="block mb-6">
-              <span className="font-display text-3xl font-light tracking-[0.25em] text-cream">KADAM</span>
+              <span className="font-display text-3xl font-semibold tracking-[0.15em] text-cream uppercase">Level Up Fashion</span>
+              <span className="block font-sans text-[10px] tracking-[0.4em] uppercase text-cream/35 mt-1">Footwear · Nepal</span>
             </Link>
             <p className="font-sans text-sm font-light text-cream/60 leading-relaxed max-w-xs mb-8">
               Quality footwear for everyday Nepal. Sneakers, boots, sandals and formals — delivered to your door. Cash on Delivery available nationwide.

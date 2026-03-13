@@ -110,16 +110,20 @@ export default function Navbar() {
                 {menuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
 
-              {/* Logo */}
+              {/* Logo + Brand Name */}
               <Link
                 to="/"
-                className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 flex-shrink-0"
+                className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 flex-shrink-0 flex items-center gap-3"
               >
                 <img
                   src={logo}
-                  alt="KADAM Nepal"
-                  className="h-10 md:h-14 w-auto object-contain"
+                  alt="Level Up Fashion"
+                  className="h-7 md:h-11 w-auto object-contain rounded-sm"
                 />
+                <div className="flex flex-col leading-none">
+                  <span className="font-display text-sm md:text-xl font-semibold tracking-[0.06em] text-charcoal uppercase">Level Up Fashion</span>
+                  <span className="font-sans text-[8px] tracking-[0.3em] uppercase text-charcoal/45 font-medium hidden sm:block">Footwear · Nepal</span>
+                </div>
               </Link>
 
               {/* Desktop Nav */}
@@ -258,7 +262,13 @@ export default function Navbar() {
             <div className="p-6">
               {/* Drawer header */}
               <div className="flex items-center justify-between mb-8">
-                <img src={logo} alt="KADAM Nepal" className="h-10 w-auto object-contain" />
+                <Link to="/" className="flex items-center gap-3">
+                  <img src={logo} alt="Level Up Fashion" className="h-9 w-auto object-contain rounded-sm" />
+                  <div className="flex flex-col leading-none">
+                    <span className="font-display text-lg font-semibold tracking-[0.08em] text-charcoal uppercase">Level Up Fashion</span>
+                    <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-charcoal/45 font-medium">Fashion · Nepal</span>
+                  </div>
+                </Link>
                 <button onClick={() => setMenuOpen(false)} className="text-charcoal p-1">
                   <X size={20} />
                 </button>
