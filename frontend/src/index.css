@@ -5,6 +5,10 @@
 @layer base {
   * {
     box-sizing: border-box;
+    margin: 0;
+    /* ✅ Add this — kills all default margins */
+    padding: 0;
+    /* ✅ Add this — kills all default padding */
   }
 
   html {
@@ -14,9 +18,14 @@
   }
 
   body {
-    background-color: #F2EBE0;
+    background-color: #0d0d0d;
+    /* ✅ Change this — was #F2EBE0 cream, now dark to match your site */
     color: #0D0B09;
     font-family: 'Outfit', system-ui, sans-serif;
+    margin: 0;
+    /* ✅ Explicit zero margin */
+    padding: 0;
+    /* ✅ Explicit zero padding */
   }
 
   ::-webkit-scrollbar {

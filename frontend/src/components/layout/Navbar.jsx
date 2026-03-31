@@ -1,40 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ShoppingBag, Search, Menu, X, ChevronDown } from 'lucide-react'
+import { ShoppingBag, Search, X, Menu } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import { PRODUCTS } from '../../data/products'
 import logo from '../../assets/logo.jpeg'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'Sneakers', href: '/collection?category=sneakers', sub: [
-    { label: 'New In', href: '/collection?category=sneakers&filter=new' },
-    { label: 'Classic', href: '/collection?category=sneakers' },
-    { label: 'High-Top', href: '/collection?category=sneakers' },
-    { label: 'Sports', href: '/collection?category=sports' },
-    { label: 'Canvas', href: '/collection?category=sneakers' },
-  ]},
-  { label: 'Boots', href: '/collection?category=boots', sub: [
-    { label: 'New In', href: '/collection?category=boots&filter=new' },
-    { label: 'Chelsea Boots', href: '/collection?category=boots' },
-    { label: 'Hiking Boots', href: '/collection?category=boots' },
-    { label: 'Winter Boots', href: '/collection?category=boots' },
-    { label: 'Sandals', href: '/collection?category=sandals' },
-  ]},
-  { label: 'Sale', href: '/collection?filter=sale', accent: true },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Hoodies',  href: '/collection?category=hoodies' },
+  { label: 'Tops',     href: '/collection?category=tshirts' },
+  { label: 'Bottoms',  href: '/collection?category=cargo' },
+  { label: 'Jackets',  href: '/collection?category=jackets' },
+  { label: 'Thrift',   href: '/collection?category=thrift' },
+  { label: 'Sale',     href: '/collection?filter=sale', accent: true },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState([])
-  const [activeDropdown, setActiveDropdown] = useState(null)
+  const [scrolled,     setScrolled]     = useState(false)
+  const [menuOpen,     setMenuOpen]     = useState(false)
+  const [searchOpen,   setSearchOpen]   = useState(false)
+  const [searchQuery,  setSearchQuery]  = useState('')
+  const [searchResults,setSearchResults]= useState([])
   const { itemCount } = useCart()
-  const location = useLocation()
-  const searchRef = useRef(null)
+  const location      = useLocation()
+  const searchRef     = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -47,9 +35,11 @@ export default function Navbar() {
   useEffect(() => {
     if (searchQuery.length > 1) {
       const q = searchQuery.toLowerCase()
-      setSearchResults(PRODUCTS.filter(p =>
-        p.name.toLowerCase().includes(q) || p.category.includes(q)
-      ).slice(0, 5))
+      setSearchResults(
+        PRODUCTS.filter(p =>
+          p.name.toLowerCase().includes(q) || p.category.includes(q)
+        ).slice(0, 5)
+      )
     } else setSearchResults([])
   }, [searchQuery])
 
@@ -59,191 +49,180 @@ export default function Navbar() {
 
   return (
     <>
-      <div id="site-header" className="sticky top-0 z-40">
-        {/* Announcement bar */}
-        <div className="bg-charcoal text-cream py-2.5 px-4 text-xs tracking-widest uppercase font-sans overflow-hidden">
-          {/* Desktop - static centered */}
-          <p className="hidden md:block text-center">Free Delivery in KTM Valley · Cash on Delivery · Ships All Over Nepal</p>
+      <style>{`
+        @keyframes fade-down {
+          from { opacity: 0; transform: translateY(-4px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-down { animation: fade-down 0.18s ease forwards; }
+        @keyframes slide-right {
+          from { transform: translateX(-100%); }
+          to   { transform: translateX(0); }
+        }
+        .animate-slide-right { animation: slide-right 0.25s cubic-bezier(0.76,0,0.24,1) forwards; }
+        @keyframes announcement-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .announcement-marquee {
+          animation: announcement-scroll 20s linear infinite;
+          width: max-content;
+        }
+      `}</style>
 
-          {/* Mobile - marquee */}
-          <div className="md:hidden relative overflow-hidden">
+      <div className="sticky top-0 z-40" style={{ fontFamily: '"Outfit", sans-serif' }}>
+
+        {/* Announcement bar — mobile only marquee */}
+        <div className="bg-[#1a1a1a] text-white/50 py-2 px-4 text-[10px] tracking-widest uppercase overflow-hidden">
+          <p className="hidden md:block text-center">
+            Free Delivery · Cash on Delivery · Ships All Over Nepal · Easy Exchange
+          </p>
+          <div className="md:hidden overflow-hidden">
             <div className="flex whitespace-nowrap announcement-marquee">
-              {[0,1].map(i => (
-                <span key={i} className="flex items-center gap-6 pr-6">
-                  <span>🚚 Free KTM Delivery</span>
-                  <span className="text-sand/60">✦</span>
-                  <span>💵 Cash on Delivery Available</span>
-                  <span className="text-sand/60">✦</span>
-                  <span>📦 Delivery All Over Nepal</span>
-                  <span className="text-sand/60">✦</span>
-                  <span>🔄 Easy Exchange Policy</span>
-                  <span className="text-sand/60">✦</span>
+              {[0, 1].map(i => (
+                <span key={i} className="flex gap-6 pr-6">
+                  <span>Free KTM Delivery</span>
+                  <span className="opacity-30">·</span>
+                  <span>Cash on Delivery</span>
+                  <span className="opacity-30">·</span>
+                  <span>Ships Nepal-Wide</span>
+                  <span className="opacity-30">·</span>
+                  <span>Easy Exchange</span>
+                  <span className="opacity-30">·</span>
                 </span>
               ))}
             </div>
           </div>
         </div>
 
-        <style>{`
-          @keyframes announcement-scroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .announcement-marquee {
-            animation: announcement-scroll 18s linear infinite;
-            width: max-content;
-          }
-          .announcement-marquee:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
+        {/* Main header */}
+        <header className={`transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#f5f0e8]/95 backdrop-blur-md shadow-[0_1px_12px_rgba(0,0,0,0.06)]'
+            : 'bg-[#f5f0e8]'
+        } border-b border-[#1a1a1a]/6`}>
+          <div className="max-w-7xl mx-auto px-5 sm:px-8">
+            <div className="flex items-center justify-between h-14 md:h-16">
 
-        <header className={`transition-all duration-300 ${scrolled ? 'bg-cream/95 backdrop-blur-md shadow-luxury' : 'bg-cream'}`}>
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16 md:h-20">
-
-              {/* Mobile menu toggle */}
+              {/* Mobile hamburger */}
               <button
-                className="lg:hidden p-2 -ml-2 text-charcoal"
+                className="lg:hidden p-1.5 -ml-1.5 text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors"
                 onClick={() => setMenuOpen(!menuOpen)}
               >
-                {menuOpen ? <X size={20} /> : <Menu size={20} />}
+                <Menu size={19} />
               </button>
 
-              {/* Logo + Brand Name */}
+              {/* Logo */}
               <Link
                 to="/"
-                className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 flex-shrink-0 flex items-center gap-3"
+                className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 flex items-center gap-2.5 flex-shrink-0"
               >
-                <img
-                  src={logo}
-                  alt="Level Up Fashion"
-                  className="h-7 md:h-11 w-auto object-contain rounded-sm"
-                />
+                <img src={logo} alt="On Pon Collection " className="h-7 md:h-8 w-auto object-contain rounded-sm" />
                 <div className="flex flex-col leading-none">
-                  <span className="font-display text-sm md:text-xl font-semibold tracking-[0.06em] text-charcoal uppercase">Level Up Fashion</span>
-                  <span className="font-sans text-[8px] tracking-[0.3em] uppercase text-charcoal/45 font-medium hidden sm:block">Footwear · Nepal</span>
+                  <span className="text-sm md:text-base font-bold tracking-[0.08em] text-[#1a1a1a] uppercase">
+                    On Pon Collection 
+                  </span>
+               
                 </div>
               </Link>
 
-              {/* Desktop Nav */}
-              <div className="hidden lg:flex items-center gap-8 ml-10">
+              {/* Desktop nav links */}
+              <nav className="hidden lg:flex items-center gap-8">
                 {NAV_LINKS.map(link => (
-                  <div
+                  <Link
                     key={link.label}
-                    className="relative"
-                    onMouseEnter={() => link.sub && setActiveDropdown(link.label)}
-                    onMouseLeave={() => setActiveDropdown(null)}
+                    to={link.href}
+                    className={`text-[10px] tracking-widest uppercase font-medium transition-colors duration-150 ${
+                      link.accent
+                        ? 'text-orange-500 hover:text-orange-600'
+                        : 'text-[#1a1a1a]/50 hover:text-[#1a1a1a]'
+                    }`}
                   >
-                    <Link
-                      to={link.href}
-                      className={`flex items-center gap-1 text-xs tracking-widest uppercase font-sans font-medium transition-colors duration-200 py-7 ${
-                        link.accent ? 'text-red-500 hover:text-red-600' : 'text-charcoal hover:text-sand'
-                      }`}
-                    >
-                      {link.label}
-                      {link.sub && (
-                        <ChevronDown
-                          size={12}
-                          className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180' : ''}`}
-                        />
-                      )}
-                    </Link>
-
-                    {/* Dropdown */}
-                    {link.sub && activeDropdown === link.label && (
-                      <div className="absolute top-full left-0 bg-cream shadow-luxury-lg py-4 w-48 animate-fade-up">
-                        {link.sub.map(s => (
-                          <Link
-                            key={s.label}
-                            to={s.href}
-                            className="block px-6 py-2.5 text-xs tracking-widest uppercase font-sans text-charcoal/70 hover:text-sand hover:bg-cream-200 transition-colors duration-150"
-                          >
-                            {s.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                    {link.label}
+                  </Link>
                 ))}
-              </div>
+              </nav>
 
-              {/* Right actions */}
-              <div className="flex items-center gap-1 md:gap-2">
+              {/* Right icons */}
+              <div className="flex items-center gap-0.5">
                 <button
                   onClick={() => setSearchOpen(!searchOpen)}
-                  className="p-2.5 text-charcoal hover:text-sand transition-colors duration-200"
+                  className="p-2 text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors"
                 >
-                  <Search size={18} />
+                  {searchOpen ? <X size={17} /> : <Search size={17} />}
                 </button>
 
                 <Link
                   to="/cart"
-                  className="relative p-2.5 text-charcoal hover:text-sand transition-colors duration-200"
+                  className="relative p-2 text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors"
                 >
-                  <ShoppingBag size={18} />
+                  <ShoppingBag size={17} />
                   {itemCount > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-charcoal text-cream text-[10px] font-sans font-medium flex items-center justify-center rounded-full animate-scale-in">
+                    <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-orange-500 text-white text-[8px] font-bold flex items-center justify-center rounded-full">
                       {itemCount > 9 ? '9+' : itemCount}
                     </span>
                   )}
                 </Link>
               </div>
-            </div>
-          </nav>
 
-          {/* Search Bar */}
+            </div>
+          </div>
+
+          {/* Search dropdown */}
           {searchOpen && (
-            <div className="border-t border-charcoal/10 bg-cream/98 backdrop-blur-md animate-fade-up">
-              <div className="max-w-2xl mx-auto px-6 py-5">
+            <div className="border-t border-[#1a1a1a]/6 animate-fade-down">
+              <div className="max-w-xl mx-auto px-5 py-4">
                 <div className="relative">
-                  <Search size={16} className="absolute left-0 top-1/2 -translate-y-1/2 text-charcoal/40" />
+                  <Search size={13} className="absolute left-0 top-1/2 -translate-y-1/2 text-[#1a1a1a]/25" />
                   <input
                     ref={searchRef}
                     type="text"
-                    placeholder="Search products, collections..."
+                    placeholder="Search products..."
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    onKeyDown={e => { if (e.key === 'Escape') setSearchOpen(false) }}
-                    className="w-full pl-7 pb-3 pt-1 bg-transparent border-b border-charcoal/20 text-charcoal placeholder:text-charcoal/40 font-sans text-sm focus:outline-none focus:border-sand transition-colors"
+                    onKeyDown={e => e.key === 'Escape' && setSearchOpen(false)}
+                    className="w-full pl-6 pb-2.5 pt-0.5 bg-transparent border-b border-[#1a1a1a]/12 text-[#1a1a1a] placeholder:text-[#1a1a1a]/30 text-sm focus:outline-none focus:border-[#1a1a1a]/40 transition-colors"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 text-charcoal/40 hover:text-charcoal"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 text-[#1a1a1a]/25 hover:text-[#1a1a1a]/60"
                     >
-                      <X size={14} />
+                      <X size={12} />
                     </button>
                   )}
                 </div>
 
                 {searchResults.length > 0 && (
-                  <div className="mt-4 divide-y divide-charcoal/5">
+                  <div className="mt-3 divide-y divide-[#1a1a1a]/5">
                     {searchResults.map(p => (
                       <Link
                         key={p.id}
                         to={`/product/${p.slug}`}
                         onClick={() => { setSearchOpen(false); setSearchQuery('') }}
-                        className="flex items-center gap-4 py-3 hover:text-sand transition-colors group"
+                        className="flex items-center gap-3 py-2.5 hover:opacity-60 transition-opacity"
                       >
                         <img
                           src={p.images[0]}
                           alt={p.name}
-                          className="w-12 h-16 object-cover bg-cream-200 flex-shrink-0"
+                          className="w-8 h-11 object-cover flex-shrink-0 bg-[#1a1a1a]/5"
                         />
-                        <div>
-                          <p className="font-display text-base font-light text-charcoal group-hover:text-sand transition-colors">
-                            {p.name}
-                          </p>
-                          <p className="text-xs text-charcoal/50 font-sans mt-0.5">Rs. {p.price.toLocaleString()}</p>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-medium text-[#1a1a1a] truncate">{p.name}</p>
+                          <p className="text-[10px] text-[#1a1a1a]/40 mt-0.5">Rs. {p.price.toLocaleString()}</p>
                         </div>
+                        {p.badge && (
+                          <span className="text-[8px] tracking-widest uppercase px-1.5 py-0.5 border border-orange-500/30 text-orange-500 flex-shrink-0">
+                            {p.badge}
+                          </span>
+                        )}
                       </Link>
                     ))}
                   </div>
                 )}
 
                 {searchQuery.length > 1 && searchResults.length === 0 && (
-                  <p className="mt-4 text-sm text-charcoal/50 font-sans">No results for "{searchQuery}"</p>
+                  <p className="mt-3 text-xs text-[#1a1a1a]/30">No results for "{searchQuery}"</p>
                 )}
               </div>
             </div>
@@ -251,74 +230,71 @@ export default function Navbar() {
         </header>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile drawer */}
       {menuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-cream z-50 lg:hidden animate-slide-right overflow-y-auto">
+          <div
+            className="fixed top-0 left-0 bottom-0 w-72 bg-[#f5f0e8] z-50 lg:hidden animate-slide-right overflow-y-auto"
+            style={{ fontFamily: '"Outfit", sans-serif' }}
+          >
             <div className="p-6">
+
               {/* Drawer header */}
-              <div className="flex items-center justify-between mb-8">
-                <Link to="/" className="flex items-center gap-3">
-                  <img src={logo} alt="Level Up Fashion" className="h-9 w-auto object-contain rounded-sm" />
-                  <div className="flex flex-col leading-none">
-                    <span className="font-display text-lg font-semibold tracking-[0.08em] text-charcoal uppercase">Level Up Fashion</span>
-                    <span className="font-sans text-[9px] tracking-[0.35em] uppercase text-charcoal/45 font-medium">Fashion · Nepal</span>
-                  </div>
-                </Link>
-                <button onClick={() => setMenuOpen(false)} className="text-charcoal p-1">
-                  <X size={20} />
+              <div className="flex items-center justify-between mb-10">
+                <span className="text-xs tracking-[0.2em] uppercase text-[#1a1a1a]/40">Menu</span>
+                <button onClick={() => setMenuOpen(false)} className="text-[#1a1a1a]/30 hover:text-[#1a1a1a] transition-colors">
+                  <X size={17} />
                 </button>
               </div>
 
-              <nav className="space-y-1">
+              {/* Nav links */}
+              <nav>
                 {NAV_LINKS.map(link => (
-                  <div key={link.label}>
-                    <Link
-                      to={link.href}
-                      className={`block py-4 border-b border-charcoal/5 text-sm tracking-widest uppercase font-sans font-medium ${
-                        link.accent ? 'text-red-500' : 'text-charcoal'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                    {link.sub && (
-                      <div className="pl-4 pt-1 pb-2 space-y-1">
-                        {link.sub.map(s => (
-                          <Link
-                            key={s.label}
-                            to={s.href}
-                            className="block py-2 text-xs tracking-widest uppercase font-sans text-charcoal/60 hover:text-sand"
-                          >
-                            {s.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className={`flex items-center justify-between py-4 border-b border-[#1a1a1a]/6 text-xs tracking-widest uppercase font-medium transition-colors ${
+                      link.accent ? 'text-orange-500' : 'text-[#1a1a1a]/60 hover:text-[#1a1a1a]'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
                 ))}
-              </nav>
-
-              <div className="mt-8 pt-6 border-t border-charcoal/10 space-y-4">
-                <Link to="/cart" className="flex items-center gap-3 text-sm font-sans text-charcoal">
-                  <ShoppingBag size={16} />
-                  Cart
-                  {itemCount > 0 && (
-                    <span className="bg-charcoal text-cream text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                      {itemCount}
-                    </span>
-                  )}
-                </Link>
                 <Link
                   to="/contact"
-                  className="flex items-center gap-3 text-sm font-sans text-charcoal/70 hover:text-sand"
+                  className="flex items-center justify-between py-4 border-b border-[#1a1a1a]/6 text-xs tracking-widest uppercase font-medium text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors"
                 >
-                  Contact Us
+                  Contact
                 </Link>
+              </nav>
+
+              {/* Cart */}
+              <Link
+                to="/cart"
+                className="mt-8 flex items-center gap-3 text-xs text-[#1a1a1a]/50 hover:text-[#1a1a1a] transition-colors tracking-widest uppercase"
+              >
+                <ShoppingBag size={14} />
+                Cart
+                {itemCount > 0 && (
+                  <span className="bg-orange-500 text-white text-[8px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+
+              {/* Badges */}
+              <div className="mt-12 flex flex-wrap gap-2">
+                {['COD', 'Free Returns', 'Ships Nepal-Wide'].map(b => (
+                  <span key={b} className="text-[8px] tracking-widest uppercase border border-[#1a1a1a]/12 text-[#1a1a1a]/30 px-2 py-1">
+                    {b}
+                  </span>
+                ))}
               </div>
+
             </div>
           </div>
         </>

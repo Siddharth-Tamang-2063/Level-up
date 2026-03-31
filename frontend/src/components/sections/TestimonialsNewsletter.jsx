@@ -3,7 +3,7 @@ import { TESTIMONIALS } from '../../data/products'
 import StarRating from '../ui/StarRating'
 import SectionHeader from '../ui/SectionHeader'
 
-// Duplicate for seamless loop
+// Duplicate 3x for seamless loop — keyframes translate by -33.333%
 const CARDS = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS]
 
 export function Testimonials() {
@@ -18,7 +18,6 @@ export function Testimonials() {
 
       {/* Row 1 — scrolls left */}
       <div className="relative mb-4">
-        {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to right, #0D0B09, transparent)' }} />
         <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
@@ -69,10 +68,10 @@ export function Testimonials() {
       <style>{`
         @keyframes marquee-left {
           0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-33.333%); }
         }
         @keyframes marquee-right {
-          0%   { transform: translateX(-50%); }
+          0%   { transform: translateX(-33.333%); }
           100% { transform: translateX(0); }
         }
         .animate-marquee-left {
@@ -95,7 +94,7 @@ export function Testimonials() {
 function TestimonialCard({ t }) {
   return (
     <div
-      className="flex-shrink-0 w-72 md:w-80 p-6 rounded-none border border-cream/10 bg-cream/5 backdrop-blur-sm hover:bg-cream/10 hover:border-sand/30 transition-all duration-300 group cursor-default"
+      className="flex-shrink-0 w-72 md:w-80 p-6 rounded-none border border-cream/10 backdrop-blur-sm hover:border-sand/30 transition-all duration-300 group cursor-default"
       style={{ background: 'rgba(242, 235, 224, 0.04)' }}
     >
       {/* Top row: stars + quote icon */}
@@ -140,20 +139,32 @@ export function Newsletter() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (email) setSubmitted(true)
+  const handleSubmit = () => {
+    if (email.trim()) setSubmitted(true)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') handleSubmit()
   }
 
   return (
-    <section className="py-24 px-6 lg:px-8">
+    // bg-cream gives this section an explicit light background so
+    // text-charcoal is always visible regardless of parent page bg.
+    // Remove bg-cream if your page already has a light background.
+    <section className="py-24 px-6 lg:px-8 bg-cream">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="text-xs tracking-ultra uppercase font-sans font-medium text-sand mb-4">Stay Updated</p>
+
+        <p className="text-xs tracking-widest uppercase font-sans font-medium text-sand mb-4">
+          Stay Updated
+        </p>
+
         <h2 className="font-display text-4xl md:text-5xl font-light text-charcoal mb-4">
-          Get New Arrivals & Offers
+          Get New Arrivals &amp; Offers
         </h2>
+
         <p className="font-sans font-light text-charcoal/60 mb-10 text-lg">
-          Be the first to know about new products, sale offers, and special deals. No spam, unsubscribe anytime.
+          Be the first to know about new products, sale offers, and special deals.
+          No spam, unsubscribe anytime.
         </p>
 
         {submitted ? (
@@ -162,22 +173,28 @@ export function Newsletter() {
             <p className="text-sm text-charcoal/50 font-sans mt-2">We'll send you updates soon.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
-              required
               value={email}
               onChange={e => setEmail(e.target.value)}
+              onKeyDown={handleKeyDown}
               placeholder="Enter your email"
               className="flex-1 border border-charcoal/20 bg-transparent px-5 py-3.5 font-sans text-sm text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:border-sand transition-colors"
             />
-            <button type="submit" className="btn-primary whitespace-nowrap">
+            <button
+              onClick={handleSubmit}
+              className="btn-primary whitespace-nowrap"
+            >
               Subscribe
             </button>
-          </form>
+          </div>
         )}
 
-        <p className="mt-4 text-xs font-sans text-charcoal/30">No spam. Unsubscribe anytime with one click.</p>
+        <p className="mt-4 text-xs font-sans text-charcoal/30">
+          No spam. Unsubscribe anytime with one click.
+        </p>
+
       </div>
     </section>
   )

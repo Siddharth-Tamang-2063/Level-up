@@ -4,34 +4,34 @@ import { ArrowRight } from 'lucide-react'
 
 const SLIDES = [
   {
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600&q=90',
-    tag: 'New Arrivals 2025',
-    line1: 'Step into',
-    line2: 'Style',
-    sub: 'Quality footwear delivered across Nepal · Cash on Delivery',
-    cta: 'Shop Now',
-    ctaLink: '/collection?collection=ss25',
-    accent: '#BF7B16',
+    image: 'https://plus.unsplash.com/premium_photo-1673356302067-aac3b545a362?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    tag: 'New Drops 2025',
+    line1: 'Wear it',
+    line2: 'Different.',
+    sub: 'Premium Streetwear · Delivered across Nepal · Cash on Delivery',
+    cta: 'Shop New Drops',
+    ctaLink: '/collection?collection=new-drops',
+    accent: '#E8A020',
   },
   {
-    image: 'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=1600&q=90',
-    tag: 'Trek & Outdoor',
-    line1: 'Built for',
-    line2: 'Nepal',
-    sub: 'Hiking boots for every trail — from Langtang to Everest base',
-    cta: 'Shop Boots',
-    ctaLink: '/collection?category=boots',
-    accent: '#185C3E',
+    image: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=1600&q=90',
+    tag: 'Thrift Archive',
+    line1: 'One of a',
+    line2: 'Kind.',
+    sub: 'Vintage & thrifted finds — each piece is unique · Limited stock',
+    cta: 'Shop Thrift',
+    ctaLink: '/collection?collection=thrift-archive',
+    accent: '#7C5CBF',
   },
   {
-    image: 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=1600&q=90',
-    tag: 'Formals & Office',
-    line1: 'Look',
-    line2: 'the Part',
-    sub: 'Smart formal shoes for meetings, weddings, and every occasion',
-    cta: 'Shop Formals',
-    ctaLink: '/collection?category=formals',
-    accent: '#8C1B35',
+    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1600&q=90',
+    tag: 'Winter Street Pack',
+    line1: 'Layer up,',
+    line2: 'Stand out.',
+    sub: 'Hoodies, puffers & jackets built for Kathmandu winters',
+    cta: 'Shop Winter Pack',
+    ctaLink: '/collection?collection=winter-pack',
+    accent: '#2E7D52',
   },
 ]
 
@@ -75,24 +75,57 @@ export default function Hero() {
   const show = ready && !transitioning
 
   return (
-    <section className="relative overflow-hidden bg-[#0a0907]"
-      style={{ height: 'calc(100vh)', minHeight: '600px', maxHeight: '980px' }}>
+    <section
+      className="relative overflow-hidden bg-[#080808]"
+      style={{ height: 'calc(100vh)', minHeight: '600px', maxHeight: '980px' }}
+    >
 
-      {/* BG */}
+      {/* BG Images */}
       {SLIDES.map((s, i) => (
-        <div key={i} className="absolute inset-0"
-          style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0, transition: 'opacity 1.1s ease' }}>
-          <img src={s.image} alt="" className="w-full h-full object-cover object-center"
+        <div
+          key={i}
+          className="absolute inset-0"
+          style={{
+            opacity: i === current ? 1 : 0,
+            zIndex: i === current ? 1 : 0,
+            transition: 'opacity 1.1s ease',
+          }}
+        >
+          <img
+            src={s.image}
+            alt=""
+            className="w-full h-full object-cover object-center"
             style={{
               transform: i === current && !transitioning ? 'scale(1.05)' : 'scale(1)',
               transition: 'transform 7s ease-out',
-            }} />
-          <div className="absolute inset-0" style={{
-            background: 'linear-gradient(to right, rgba(10,9,7,0.92) 0%, rgba(10,9,7,0.6) 50%, rgba(10,9,7,0.2) 100%)'
-          }} />
-          <div className="absolute inset-0" style={{
-            background: 'linear-gradient(to top, rgba(10,9,7,0.75) 0%, transparent 55%)'
-          }} />
+            }}
+          />
+          {/* Dark left gradient — heavier for streetwear mood */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to right, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.65) 55%, rgba(8,8,8,0.15) 100%)',
+            }}
+          />
+          {/* Bottom fade */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, rgba(8,8,8,0.85) 0%, transparent 50%)',
+            }}
+          />
+          {/* Grain texture overlay for thrift/streetwear feel */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
+              opacity: 0.35,
+              mixBlendMode: 'overlay',
+            }}
+          />
         </div>
       ))}
 
@@ -100,161 +133,226 @@ export default function Hero() {
       <div className="absolute inset-0 z-10 flex flex-col justify-center">
         <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-16 w-full">
 
-          {/* Tag — Outfit small caps */}
-          <div className="overflow-hidden mb-5">
-            <p style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontWeight: 300,
-              fontSize: '11px',
-              letterSpacing: '0.5em',
-              textTransform: 'uppercase',
-              color: slide.accent,
-              transform: show ? 'translateY(0)' : 'translateY(120%)',
-              transition: 'transform 0.65s cubic-bezier(0.76,0,0.24,1)',
-            }}>
-              — {slide.tag}
+          {/* Category Tag */}
+          <div className="overflow-hidden mb-6">
+            <p
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontWeight: 400,
+                fontSize: '10px',
+                letterSpacing: '0.55em',
+                textTransform: 'uppercase',
+                color: slide.accent,
+                transform: show ? 'translateY(0)' : 'translateY(120%)',
+                transition: 'transform 0.65s cubic-bezier(0.76,0,0.24,1)',
+              }}
+            >
+              ✦ {slide.tag}
             </p>
           </div>
 
-          {/* Line 1 — Cormorant Light, faded */}
+          {/* Line 1 — light faded */}
           <div className="overflow-hidden">
-            <span style={{
-              display: 'block',
-              fontFamily: '"Cormorant Garamond", serif',
-              fontWeight: 300,
-              fontSize: 'clamp(3rem, 8vw, 7.5rem)',
-              lineHeight: 0.95,
-              letterSpacing: '-0.01em',
-              color: 'rgba(255,255,255,0.55)',
-              transform: show ? 'translateY(0)' : 'translateY(110%)',
-              transition: 'transform 0.85s cubic-bezier(0.76,0,0.24,1) 0.08s',
-            }}>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: '"Cormorant Garamond", serif',
+                fontWeight: 300,
+                fontSize: 'clamp(3rem, 8vw, 7.5rem)',
+                lineHeight: 0.95,
+                letterSpacing: '-0.01em',
+                color: 'rgba(255,255,255,0.45)',
+                transform: show ? 'translateY(0)' : 'translateY(110%)',
+                transition: 'transform 0.85s cubic-bezier(0.76,0,0.24,1) 0.08s',
+              }}
+            >
               {slide.line1}
             </span>
           </div>
 
-          {/* Line 2 — Cormorant Italic Bold, full white — the hero word */}
+          {/* Line 2 — bold italic hero word */}
           <div className="overflow-hidden mb-10">
-            <span style={{
-              display: 'block',
-              fontFamily: '"Cormorant Garamond", serif',
-              fontStyle: 'italic',
-              fontWeight: 600,
-              fontSize: 'clamp(3.8rem, 10vw, 9.5rem)',
-              lineHeight: 1,
-              letterSpacing: '-0.02em',
-              color: '#ffffff',
-              transform: show ? 'translateY(0)' : 'translateY(110%)',
-              transition: 'transform 0.85s cubic-bezier(0.76,0,0.24,1) 0.17s',
-            }}>
+            <span
+              style={{
+                display: 'block',
+                fontFamily: '"Cormorant Garamond", serif',
+                fontStyle: 'italic',
+                fontWeight: 700,
+                fontSize: 'clamp(3.8rem, 10vw, 9.5rem)',
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+                color: '#ffffff',
+                transform: show ? 'translateY(0)' : 'translateY(110%)',
+                transition: 'transform 0.85s cubic-bezier(0.76,0,0.24,1) 0.17s',
+              }}
+            >
               {slide.line2}
-              {/* Accent dot */}
-              <span style={{ color: slide.accent, marginLeft: '4px' }}>.</span>
+              <span style={{ color: slide.accent }}> ✦</span>
             </span>
           </div>
 
-          {/* Sub + buttons */}
-          <div style={{
-            opacity: show ? 1 : 0,
-            transform: show ? 'translateY(0)' : 'translateY(16px)',
-            transition: 'opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s',
-          }}>
-            {/* Subtitle — Outfit light */}
-            <p style={{
-              fontFamily: '"Outfit", sans-serif',
-              fontWeight: 300,
-              fontSize: '12px',
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.4)',
-              marginBottom: '32px',
-            }}>
+          {/* Subtitle + Buttons */}
+          <div
+            style={{
+              opacity: show ? 1 : 0,
+              transform: show ? 'translateY(0)' : 'translateY(16px)',
+              transition: 'opacity 0.6s ease 0.35s, transform 0.6s ease 0.35s',
+            }}
+          >
+            {/* Subtitle */}
+            <p
+              style={{
+                fontFamily: '"Outfit", sans-serif',
+                fontWeight: 300,
+                fontSize: '11px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.35)',
+                marginBottom: '36px',
+              }}
+            >
               {slide.sub}
             </p>
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row items-start gap-3">
-              {/* Primary */}
-              <Link to={slide.ctaLink}
+
+              {/* Primary CTA */}
+              <Link
+                to={slide.ctaLink}
                 className="group inline-flex items-center gap-3 text-white transition-opacity duration-200 hover:opacity-85"
                 style={{
                   background: slide.accent,
                   padding: '14px 36px',
                   fontFamily: '"Outfit", sans-serif',
-                  fontWeight: 500,
-                  fontSize: '12px',
-                  letterSpacing: '0.25em',
+                  fontWeight: 600,
+                  fontSize: '11px',
+                  letterSpacing: '0.28em',
                   textTransform: 'uppercase',
-                }}>
+                }}
+              >
                 {slide.cta}
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+                <ArrowRight
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform duration-200"
+                />
               </Link>
 
-              {/* Secondary */}
-              <Link to="/collection"
-                className="inline-flex items-center gap-2 text-white/50 hover:text-white/80 transition-colors duration-300"
+              {/* Secondary — Thrift special link on slide 2, otherwise Browse All */}
+              <Link
+                to="/collection"
+                className="inline-flex items-center gap-2 text-white/40 hover:text-white/75 transition-colors duration-300"
                 style={{
-                  border: '1px solid rgba(255,255,255,0.15)',
+                  border: '1px solid rgba(255,255,255,0.12)',
                   padding: '14px 36px',
                   fontFamily: '"Outfit", sans-serif',
                   fontWeight: 400,
-                  fontSize: '12px',
-                  letterSpacing: '0.25em',
+                  fontSize: '11px',
+                  letterSpacing: '0.28em',
                   textTransform: 'uppercase',
-                }}>
+                }}
+              >
                 Browse All
               </Link>
+
             </div>
+
+            {/* Trust badges — streetwear specific */}
+            <div
+              className="flex items-center gap-6 mt-10"
+              style={{ opacity: show ? 1 : 0, transition: 'opacity 0.6s ease 0.55s' }}
+            >
+              {['COD Available', 'Free Returns', 'Ships Nepal-Wide'].map((badge) => (
+                <span
+                  key={badge}
+                  style={{
+                    fontFamily: '"Outfit", sans-serif',
+                    fontSize: '9px',
+                    fontWeight: 400,
+                    letterSpacing: '0.3em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.2)',
+                  }}
+                >
+                  · {badge}
+                </span>
+              ))}
+            </div>
+
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Progress bar + bottom nav */}
       <div className="absolute bottom-0 left-0 right-0 z-10">
-        <div style={{ height: '1px', background: 'rgba(255,255,255,0.07)' }}>
-          <div style={{ height: '1px', width: `${progress}%`, background: slide.accent, transition: 'width 0.12s linear' }} />
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.06)' }}>
+          <div
+            style={{
+              height: '1px',
+              width: `${progress}%`,
+              background: slide.accent,
+              transition: 'width 0.12s linear',
+            }}
+          />
         </div>
         <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-16 py-5 flex items-center justify-between">
+
+          {/* Slide counters */}
           <div className="flex items-center gap-8">
             {SLIDES.map((_, i) => (
-              <button key={i} onClick={() => goTo(i)}
+              <button
+                key={i}
+                onClick={() => goTo(i)}
                 style={{
                   fontFamily: '"DM Mono", monospace',
                   fontSize: '10px',
                   letterSpacing: '0.4em',
-                  color: i === current ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.2)',
+                  color:
+                    i === current
+                      ? 'rgba(255,255,255,0.75)'
+                      : 'rgba(255,255,255,0.18)',
                   transition: 'color 0.3s ease',
-                }}>
+                }}
+              >
                 0{i + 1}
               </button>
             ))}
           </div>
-          <span style={{
-            fontFamily: '"Outfit", sans-serif',
-            fontWeight: 300,
-            fontSize: '10px',
-            letterSpacing: '0.35em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.18)',
-            display: 'none',
-          }}
-            className="md:block">
-            Nepal · {new Date().getFullYear()}
+
+          {/* Right label */}
+          <span
+            style={{
+              fontFamily: '"Outfit", sans-serif',
+              fontWeight: 300,
+              fontSize: '10px',
+              letterSpacing: '0.35em',
+              textTransform: 'uppercase',
+              color: 'rgba(255,255,255,0.15)',
+              display: 'none',
+            }}
+            className="md:block"
+          >
+            Streetwear · Nepal · {new Date().getFullYear()}
           </span>
+
         </div>
       </div>
 
       {/* Mobile dots */}
       <div className="absolute bottom-14 right-6 z-20 flex md:hidden flex-col items-center gap-2">
         {SLIDES.map((_, i) => (
-          <button key={i} onClick={() => goTo(i)}
+          <button
+            key={i}
+            onClick={() => goTo(i)}
             style={{
               width: '3px',
               height: i === current ? '22px' : '5px',
-              background: i === current ? slide.accent : 'rgba(255,255,255,0.2)',
+              background:
+                i === current ? slide.accent : 'rgba(255,255,255,0.18)',
               borderRadius: '2px',
               transition: 'all 0.35s ease',
-            }} />
+            }}
+          />
         ))}
       </div>
 

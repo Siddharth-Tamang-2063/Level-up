@@ -1,16 +1,28 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ShoppingBag, Heart, Eye } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 
 const BADGE_COLORS = {
-  'Best Seller': 'bg-charcoal text-cream',
-  'New Arrival': 'bg-sand text-white',
+  'Best Seller': 'bg-[#111] text-white',
+  'New Arrival': 'bg-orange-400 text-black',
   'Sale': 'bg-red-500 text-white',
-  'Limited': 'bg-blush text-charcoal',
-  'Luxury': 'bg-sand-dark text-white',
-  'Premium': 'bg-sand-dark text-white',
+  'Limited': 'bg-purple-500 text-white',
+  'Luxury': 'bg-orange-400 text-black',
+  'Premium': 'bg-orange-400 text-black',
+  'Trending': 'bg-white/10 text-white border border-white/20',
+  'Thrift Pick': 'bg-purple-500/20 text-purple-300 border border-purple-400/40',
 }
+
+// ✅ Optimized image URL — forces WebP + correct size
+function optimizeUrl(src, width = 600) {
+  if (!src || src.includes('auto=format')) return src
+  const base = src.split('?')[0]
+  return `${base}?w=${width}&q=70&auto=format&fit=crop`
+}
+
+// ✅ Fallback image
+const FALLBACK = 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=70&auto=format&fit=crop'
 
 export default function ProductCard({ product, layout = 'grid' }) {
   if (!product) return null
@@ -18,6 +30,7 @@ export default function ProductCard({ product, layout = 'grid' }) {
   const [wishlist, setWishlist] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
   const { addItem } = useCart()
+  const navigate = useNavigate()
 
   const handleAddToCart = (e) => {
     e.preventDefault()
@@ -28,36 +41,85 @@ export default function ProductCard({ product, layout = 'grid' }) {
     setTimeout(() => setAddedToCart(false), 1800)
   }
 
+  const handleQuickView = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigate(`/product/${product.slug}`)
+  }
+
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : null
 
-  const img1 = product.images?.[0]
-  const img2 = product.images?.[1]
+  // ✅ Optimized URLs
+  const img1 = optimizeUrl(product.images?.[0])
+  const img2 = optimizeUrl(product.images?.[1])
 
+  // ── List layout ──────────────────────────────────────────────
   if (layout === 'list') {
     return (
-      <Link to={`/product/${product.slug}`}
-        className="flex gap-4 p-4 bg-white hover:shadow-card transition-shadow duration-300 group">
-        <div className="w-28 h-36 flex-shrink-0 overflow-hidden bg-cream-200 relative">
-          <img src={img1} alt={product.name}
+      <Link
+        to={`/product/${product.slug}`}
+        className="flex gap-4 p-4 bg-[#111] border border-white/5 hover:border-white/10 transition-all duration-300 group"
+      >
+        <div className="w-28 h-36 flex-shrink-0 overflow-hidden bg-white/5 relative">
+          <img
+            src={img1}
+            alt={product.name}
+            loading="lazy"                      // ✅ lazy load
+            crossOrigin="anonymous"             // ✅ fixes CORB
+            decoding="async"                    // ✅ non-blocking decode
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            style={{ opacity: 1 }} />
+            onError={(e) => { e.target.src = FALLBACK }}
+          />
         </div>
         <div className="flex flex-col justify-between py-1 flex-1">
           <div>
-            <p className="text-xs tracking-widest uppercase text-sand font-medium mb-1">{product.category}</p>
-            <h3 className="font-display text-xl font-light text-charcoal leading-tight mb-2">{product.name}</h3>
-            <p className="text-sm text-charcoal/60 line-clamp-2 font-sans">{product.description}</p>
+            <p
+              className="text-[10px] tracking-widest uppercase font-medium text-orange-400 mb-1"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
+              {product.category}
+            </p>
+            <h3
+              className="text-xl font-light text-white leading-tight mb-2"
+              style={{ fontFamily: '"Cormorant Garamond", serif' }}
+            >
+              {product.name}
+            </h3>
+            <p
+              className="text-sm text-white/40 line-clamp-2"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
+              {product.description}
+            </p>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
-              <span className="font-sans text-lg font-medium text-charcoal">Rs. {product.price.toLocaleString()}</span>
-              {product.originalPrice && <span className="text-sm text-charcoal/40 line-through">Rs. {product.originalPrice.toLocaleString()}</span>}
+              <span
+                className="text-lg font-medium text-white"
+                style={{ fontFamily: '"Outfit", sans-serif' }}
+              >
+                Rs. {product.price.toLocaleString()}
+              </span>
+              {product.originalPrice && (
+                <span
+                  className="text-sm text-white/30 line-through"
+                  style={{ fontFamily: '"Outfit", sans-serif' }}
+                >
+                  Rs. {product.originalPrice.toLocaleString()}
+                </span>
+              )}
             </div>
             <div className="flex gap-1">
               {(product.sizes || []).slice(0, 4).map(s => (
-                <span key={s} className="text-xs border border-charcoal/20 px-2 py-0.5 text-charcoal/60">{s}</span>
+                <span
+                  key={s}
+                  className="text-xs border border-white/15 px-2 py-0.5 text-white/40"
+                  style={{ fontFamily: '"Outfit", sans-serif' }}
+                >
+                  {s}
+                </span>
               ))}
             </div>
           </div>
@@ -66,94 +128,107 @@ export default function ProductCard({ product, layout = 'grid' }) {
     )
   }
 
+  // ── Grid layout ──────────────────────────────────────────────
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ opacity: 1 }}
     >
       <Link to={`/product/${product.slug}`} className="block">
 
-        {/* ── Image Shell ───────────────────────────── */}
+        {/* Image Shell */}
         <div
-          className="relative overflow-hidden bg-cream-200"
+          className="relative overflow-hidden bg-white/5"
           style={{ paddingBottom: '133.33%' }}
         >
-          {/* Primary image */}
+          {/* ✅ Primary image — lazy + CORB fix */}
           <img
             src={img1}
             alt={product.name}
+            loading="lazy"
+            crossOrigin="anonymous"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
             style={{
-              opacity: 1,
               transform: hovered ? 'scale(1.07)' : 'scale(1)',
               transition: 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
+            onError={(e) => { e.target.src = FALLBACK }}
           />
 
-          {/* Secondary image crossfade */}
+          {/* ✅ Secondary image — only renders in DOM when img2 exists */}
           {img2 && (
             <img
               src={img2}
               alt={product.name}
+              loading="lazy"
+              crossOrigin="anonymous"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 opacity: hovered ? 1 : 0,
                 transform: hovered ? 'scale(1.07)' : 'scale(1.03)',
                 transition: 'opacity 0.6s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               }}
+             onError={(e) => { if (e.target.src !== FALLBACK) e.target.src = FALLBACK }}
             />
           )}
 
-          {/* Dark scrim — deepens on hover */}
+          {/* Dark scrim */}
           <div
-            className="absolute inset-0 bg-charcoal pointer-events-none"
+            className="absolute inset-0 bg-black pointer-events-none"
             style={{
-              opacity: hovered ? 0.12 : 0,
+              opacity: hovered ? 0.2 : 0,
               transition: 'opacity 0.4s ease',
             }}
           />
 
           {/* Badge */}
           {product.badge && (
-            <span className={`absolute top-3 left-3 text-xs tracking-widest uppercase font-sans font-medium px-2.5 py-1 z-10 ${BADGE_COLORS[product.badge] || 'bg-charcoal text-cream'}`}
+            <span
+              className={`absolute top-3 left-3 text-[10px] tracking-widest uppercase font-medium px-2.5 py-1 z-10 ${BADGE_COLORS[product.badge] || 'bg-[#111] text-white'}`}
               style={{
+                fontFamily: '"Outfit", sans-serif',
                 opacity: hovered ? 0 : 1,
                 transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
                 transition: 'opacity 0.3s ease, transform 0.3s ease',
-              }}>
+              }}
+            >
               {product.badge}
             </span>
           )}
 
           {/* Discount % */}
           {discount && (
-            <span className="absolute top-3 right-3 bg-red-500 text-white text-xs font-medium px-2 py-1 font-sans z-10">
+            <span
+              className="absolute top-3 right-3 bg-red-500 text-white text-[10px] font-medium px-2 py-1 z-10"
+              style={{ fontFamily: '"Outfit", sans-serif' }}
+            >
               -{discount}%
             </span>
           )}
 
-          {/* Wishlist — slides in from top-right */}
+          {/* Wishlist */}
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setWishlist(!wishlist) }}
-            className="absolute w-9 h-9 bg-white flex items-center justify-center z-20"
+            className="absolute w-9 h-9 bg-[#111] flex items-center justify-center z-20"
             style={{
               top: discount ? '46px' : '12px',
               right: '12px',
               opacity: hovered ? 1 : 0,
               transform: hovered ? 'translateY(0) scale(1)' : 'translateY(-8px) scale(0.85)',
               transition: 'opacity 0.3s ease 0.05s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s',
-              boxShadow: '0 2px 12px rgba(0,0,0,0.12)',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
             }}
           >
             <Heart
               size={14}
-              className={wishlist ? 'fill-red-400 text-red-400' : 'text-charcoal'}
+              className={wishlist ? 'fill-red-400 text-red-400' : 'text-white/60'}
               style={{ transition: 'color 0.2s ease, fill 0.2s ease' }}
             />
           </button>
 
-          {/* Quick-view pill — fades in center */}
+          {/* Quick View — button not Link */}
           <div
             className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
             style={{
@@ -161,22 +236,22 @@ export default function ProductCard({ product, layout = 'grid' }) {
               transition: 'opacity 0.3s ease 0.1s',
             }}
           >
-            <Link
-              to={`/product/${product.slug}`}
-              onClick={e => e.stopPropagation()}
-              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs tracking-widest uppercase font-sans font-medium text-charcoal pointer-events-auto"
+            <button
+              onClick={handleQuickView}
+              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs tracking-widest uppercase font-medium text-black pointer-events-auto"
               style={{
+                fontFamily: '"Outfit", sans-serif',
                 transform: hovered ? 'translateY(0) scale(1)' : 'translateY(6px) scale(0.95)',
                 transition: 'transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1) 0.1s',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
               }}
             >
               <Eye size={13} />
               Quick View
-            </Link>
+            </button>
           </div>
 
-          {/* Add to Cart bar — slides up from bottom */}
+          {/* Add to Cart bar */}
           <div
             className="absolute bottom-0 left-0 right-0 z-20"
             style={{
@@ -186,11 +261,12 @@ export default function ProductCard({ product, layout = 'grid' }) {
           >
             <button
               onClick={handleAddToCart}
-              className="w-full flex items-center justify-center gap-2 py-3.5 text-xs tracking-widest uppercase font-sans font-medium"
+              className="w-full flex items-center justify-center gap-2 py-3.5 text-[10px] tracking-widest uppercase font-medium"
               style={{
-                background: addedToCart ? '#185C3E' : '#0D0B09',
-                color: '#F2EBE0',
-                transition: 'background 0.3s ease',
+                fontFamily: '"Outfit", sans-serif',
+                background: addedToCart ? '#2E7D52' : '#fb923c',
+                color: addedToCart ? '#fff' : '#000',
+                transition: 'background 0.3s ease, color 0.3s ease',
               }}
             >
               <ShoppingBag
@@ -200,18 +276,24 @@ export default function ProductCard({ product, layout = 'grid' }) {
                   transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 }}
               />
-              {addedToCart ? 'Added to Cart ✓' : 'Add to Cart'}
+              {addedToCart ? 'Added ✓' : 'Add to Cart'}
             </button>
           </div>
         </div>
 
-        {/* ── Product Info ──────────────────────────── */}
+        {/* Product Info */}
         <div className="pt-3.5 pb-1">
-          <p className="text-xs tracking-widest uppercase text-sand font-medium font-sans mb-1">{product.category}</p>
+          <p
+            className="text-[10px] tracking-widest uppercase font-medium text-orange-400 mb-1"
+            style={{ fontFamily: '"Outfit", sans-serif' }}
+          >
+            {product.category}
+          </p>
           <h3
-            className="font-display text-lg md:text-xl font-light leading-tight mb-2"
+            className="text-lg md:text-xl font-light leading-tight mb-2"
             style={{
-              color: hovered ? '#BF7B16' : '#0D0B09',
+              fontFamily: '"Cormorant Garamond", serif',
+              color: hovered ? '#fb923c' : '#ffffff',
               transition: 'color 0.3s ease',
             }}
           >
@@ -219,17 +301,33 @@ export default function ProductCard({ product, layout = 'grid' }) {
           </h3>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
-              <span className="font-sans font-medium text-charcoal">Rs. {product.price.toLocaleString()}</span>
+              <span
+                className="font-medium text-white"
+                style={{ fontFamily: '"Outfit", sans-serif' }}
+              >
+                Rs. {product.price.toLocaleString()}
+              </span>
               {product.originalPrice && (
-                <span className="text-sm text-charcoal/40 line-through font-sans">Rs. {product.originalPrice.toLocaleString()}</span>
+                <span
+                  className="text-sm text-white/30 line-through"
+                  style={{ fontFamily: '"Outfit", sans-serif' }}
+                >
+                  Rs. {product.originalPrice.toLocaleString()}
+                </span>
               )}
             </div>
             <div className="flex items-center gap-1">
-              <span className="text-sand text-xs">★</span>
-              <span className="text-xs text-charcoal/60 font-sans">{product.rating}</span>
+              <span className="text-orange-400 text-xs">★</span>
+              <span
+                className="text-xs text-white/40"
+                style={{ fontFamily: '"Outfit", sans-serif' }}
+              >
+                {product.rating}
+              </span>
             </div>
           </div>
         </div>
+
       </Link>
     </div>
   )

@@ -2,20 +2,20 @@ import React, { createContext, useContext, useState } from 'react'
 
 // ─── CREDENTIALS ───────────────────────────────────────────
 const ADMIN_ID       = 'admin'
-const ADMIN_PASSWORD = 'levelup@2025'
+const ADMIN_PASSWORD = 'admin123'
 // ───────────────────────────────────────────────────────────
 
 const AdminAuthContext = createContext(null)
 
 export function AdminAuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return sessionStorage.getItem('levelup_admin_auth') === 'true'
+    return sessionStorage.getItem('On Pon Collection _admin_auth') === 'true'
   })
   const [loginError, setLoginError] = useState('')
 
   const login = (id, password) => {
     if (id === ADMIN_ID && password === ADMIN_PASSWORD) {
-      sessionStorage.setItem('levelup_admin_auth', 'true')
+      sessionStorage.setItem('On Pon Collection _admin_auth', 'true')
       setIsAuthenticated(true)
       setLoginError('')
       return true
@@ -25,7 +25,7 @@ export function AdminAuthProvider({ children }) {
   }
 
   const logout = () => {
-    sessionStorage.removeItem('levelup_admin_auth')
+    sessionStorage.removeItem('On Pon Collection _admin_auth')
     setIsAuthenticated(false)
   }
 

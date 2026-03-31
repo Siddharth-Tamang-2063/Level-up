@@ -22,7 +22,7 @@ const PRICE_RANGES = [
 const HEADER_IMAGES = {
   sale: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=80',
   new: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1400&q=80',
-  hoodies: 'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=1400&q=80',
+  hoodies: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1400&q=80',
   jackets: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=1400&q=80',
   tshirts: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=1400&q=80',
   pants: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=1400&q=80',
