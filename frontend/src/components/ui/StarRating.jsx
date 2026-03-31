@@ -24,7 +24,7 @@ export default function StarRating({ rating, reviews, showCount = true, size = '
         ))}
       </div>
       {showCount && reviews !== undefined && (
-        <span className="text-xs text-charcoal/50 font-sans">({reviews})</span>
+        <span className="text-xs text-white/50 font-sans">({reviews})</span>
       )}
     </div>
   )

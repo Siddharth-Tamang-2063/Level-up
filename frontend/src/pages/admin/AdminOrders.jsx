@@ -45,21 +45,21 @@ export default function AdminOrders() {
     <AdminLayout>
       <div className="max-w-7xl">
         <div className="mb-8">
-          <h1 className="font-sans text-2xl font-semibold text-charcoal">Orders</h1>
-          <p className="text-sm text-charcoal/50 font-sans mt-1">{orders.length} total orders</p>
+          <h1 className="font-sans text-2xl font-semibold text-white">Orders</h1>
+          <p className="text-sm text-white/50 font-sans mt-1">{orders.length} total orders</p>
         </div>
 
         {/* Quick stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: 'Total Orders', value: stats.total, color: 'text-charcoal' },
+            { label: 'Total Orders', value: stats.total, color: 'text-white' },
             { label: 'Pending', value: stats.pending, color: 'text-amber-600' },
             { label: 'Processing', value: stats.processing, color: 'text-blue-600' },
             { label: 'Delivered', value: stats.delivered, color: 'text-emerald-600' },
           ].map(s => (
             <div key={s.label} className="bg-white p-5 rounded border border-gray-100">
               <p className={`text-2xl font-sans font-semibold ${s.color}`}>{s.value}</p>
-              <p className="text-xs text-charcoal/40 font-sans mt-1">{s.label}</p>
+              <p className="text-xs text-white/40 font-sans mt-1">{s.label}</p>
             </div>
           ))}
         </div>
@@ -67,7 +67,7 @@ export default function AdminOrders() {
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1 max-w-xs">
-            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-charcoal/30" />
+            <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" />
             <input type="text" value={search} onChange={e => setSearch(e.target.value)}
               placeholder="Search orders or customers..."
               className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-100 rounded text-sm font-sans focus:outline-none focus:border-sand transition-colors" />
@@ -76,7 +76,7 @@ export default function AdminOrders() {
           <div className="flex gap-2">
             {['all', ...STATUSES].map(s => (
               <button key={s} onClick={() => setFilterStatus(s)}
-                className={`px-4 py-2 text-xs tracking-widest uppercase font-sans font-medium rounded transition-all ${filterStatus === s ? 'bg-charcoal text-cream' : 'bg-white text-charcoal/50 border border-gray-100 hover:text-charcoal'}`}>
+                className={`px-4 py-2 text-xs tracking-widest uppercase font-sans font-medium rounded transition-all ${filterStatus === s ? 'bg-charcoal text-cream' : 'bg-white text-white/50 border border-gray-100 hover:text-white'}`}>
                 {s}
               </button>
             ))}
@@ -90,7 +90,7 @@ export default function AdminOrders() {
               <thead>
                 <tr className="border-b border-gray-50">
                   {['Order ID', 'Customer', 'Date', 'Items', 'Total', 'Status', 'Actions'].map(h => (
-                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-charcoal/40">{h}</th>
+                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-white/40">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -98,16 +98,16 @@ export default function AdminOrders() {
                 {filtered.map(order => (
                   <React.Fragment key={order.id}>
                     <tr className={`border-b border-gray-50 hover:bg-gray-50/50 transition-colors ${expandedOrder === order.id ? 'bg-gray-50' : ''}`}>
-                      <td className="px-6 py-4 text-sm font-mono text-charcoal/70">{order.id}</td>
+                      <td className="px-6 py-4 text-sm font-mono text-white/70">{order.id}</td>
                       <td className="px-6 py-4">
-                        <p className="text-sm font-sans font-medium text-charcoal">{order.customer}</p>
-                        <p className="text-xs text-charcoal/40 font-sans">{order.email}</p>
+                        <p className="text-sm font-sans font-medium text-white">{order.customer}</p>
+                        <p className="text-xs text-white/40 font-sans">{order.email}</p>
                       </td>
-                      <td className="px-6 py-4 text-sm font-sans text-charcoal/60 whitespace-nowrap">{order.date}</td>
-                      <td className="px-6 py-4 text-sm font-sans text-charcoal">
+                      <td className="px-6 py-4 text-sm font-sans text-white/60 whitespace-nowrap">{order.date}</td>
+                      <td className="px-6 py-4 text-sm font-sans text-white">
                         {order.items.reduce((s, i) => s + i.qty, 0)} items
                       </td>
-                      <td className="px-6 py-4 text-sm font-sans font-semibold text-charcoal">Rs. {order.total}</td>
+                      <td className="px-6 py-4 text-sm font-sans font-semibold text-white">Rs. {order.total}</td>
                       <td className="px-6 py-4">
                         <div className="relative">
                           {updatingStatus === order.id ? (
@@ -128,7 +128,7 @@ export default function AdminOrders() {
                       </td>
                       <td className="px-6 py-4">
                         <button onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}
-                          className="w-8 h-8 flex items-center justify-center text-charcoal/40 hover:text-charcoal hover:bg-gray-100 rounded transition-all">
+                          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white hover:bg-gray-100 rounded transition-all">
                           <Eye size={14} />
                         </button>
                       </td>
@@ -139,16 +139,16 @@ export default function AdminOrders() {
                       <tr className="bg-gray-50">
                         <td colSpan={7} className="px-6 py-4">
                           <div className="flex flex-wrap gap-4">
-                            <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal/40 w-full">Order Items</p>
+                            <p className="text-xs tracking-widest uppercase font-sans font-medium text-white/40 w-full">Order Items</p>
                             {order.items.map((item, i) => {
                               const p = PRODUCTS.find(prod => prod.id === item.productId)
                               return p ? (
                                 <div key={i} className="flex items-center gap-3 bg-white p-3 rounded border border-gray-100">
                                   <img src={p.images[0]} alt={p.name} className="w-12 h-14 object-cover" />
                                   <div>
-                                    <p className="text-sm font-sans font-medium text-charcoal">{p.name}</p>
-                                    <p className="text-xs text-charcoal/50 font-sans">Size: {item.size} · Qty: {item.qty}</p>
-                                    <p className="text-xs text-charcoal font-sans font-medium mt-1">Rs. {(p.price * item.qty).toLocaleString()}</p>
+                                    <p className="text-sm font-sans font-medium text-white">{p.name}</p>
+                                    <p className="text-xs text-white/50 font-sans">Size: {item.size} · Qty: {item.qty}</p>
+                                    <p className="text-xs text-white font-sans font-medium mt-1">Rs. {(p.price * item.qty).toLocaleString()}</p>
                                   </div>
                                 </div>
                               ) : null
@@ -165,7 +165,7 @@ export default function AdminOrders() {
 
           {filtered.length === 0 && (
             <div className="text-center py-12">
-              <p className="font-sans text-charcoal/40 text-sm">No orders found</p>
+              <p className="font-sans text-white/40 text-sm">No orders found</p>
             </div>
           )}
         </div>

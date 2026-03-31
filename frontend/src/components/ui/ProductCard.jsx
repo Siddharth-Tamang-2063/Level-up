@@ -5,23 +5,21 @@ import { useCart } from '../../context/CartContext'
 
 const BADGE_COLORS = {
   'Best Seller': 'bg-[#111] text-white',
-  'New Arrival': 'bg-orange-400 text-black',
+  'New Arrival': 'bg-orange-400 text-white',
   'Sale': 'bg-red-500 text-white',
   'Limited': 'bg-purple-500 text-white',
-  'Luxury': 'bg-orange-400 text-black',
-  'Premium': 'bg-orange-400 text-black',
-  'Trending': 'bg-white/10 text-white border border-white/20',
-  'Thrift Pick': 'bg-purple-500/20 text-purple-300 border border-purple-400/40',
+  'Luxury': 'bg-orange-400 text-white',
+  'Premium': 'bg-orange-400 text-white',
+  'Trending': 'bg-black/10 text-black/60 border border-black/20',
+  'Thrift Pick': 'bg-purple-500/20 text-purple-600 border border-purple-400/40',
 }
 
-// ✅ Optimized image URL — forces WebP + correct size
 function optimizeUrl(src, width = 600) {
   if (!src || src.includes('auto=format')) return src
   const base = src.split('?')[0]
   return `${base}?w=${width}&q=70&auto=format&fit=crop`
 }
 
-// ✅ Fallback image
 const FALLBACK = 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=70&auto=format&fit=crop'
 
 export default function ProductCard({ product, layout = 'grid' }) {
@@ -51,7 +49,6 @@ export default function ProductCard({ product, layout = 'grid' }) {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : null
 
-  // ✅ Optimized URLs
   const img1 = optimizeUrl(product.images?.[0])
   const img2 = optimizeUrl(product.images?.[1])
 
@@ -60,15 +57,15 @@ export default function ProductCard({ product, layout = 'grid' }) {
     return (
       <Link
         to={`/product/${product.slug}`}
-        className="flex gap-4 p-4 bg-[#111] border border-white/5 hover:border-white/10 transition-all duration-300 group"
+        className="flex gap-4 p-4 bg-white border border-black/5 hover:border-black/10 transition-all duration-300 group"
       >
-        <div className="w-28 h-36 flex-shrink-0 overflow-hidden bg-white/5 relative">
+        <div className="w-28 h-36 flex-shrink-0 overflow-hidden bg-black/5 relative">
           <img
             src={img1}
             alt={product.name}
-            loading="lazy"                      // ✅ lazy load
-            crossOrigin="anonymous"             // ✅ fixes CORB
-            decoding="async"                    // ✅ non-blocking decode
+            loading="lazy"
+            crossOrigin="anonymous"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             onError={(e) => { e.target.src = FALLBACK }}
           />
@@ -82,13 +79,13 @@ export default function ProductCard({ product, layout = 'grid' }) {
               {product.category}
             </p>
             <h3
-              className="text-xl font-light text-white leading-tight mb-2"
+              className="text-xl font-light text-black/80 leading-tight mb-2"
               style={{ fontFamily: '"Cormorant Garamond", serif' }}
             >
               {product.name}
             </h3>
             <p
-              className="text-sm text-white/40 line-clamp-2"
+              className="text-sm text-black/40 line-clamp-2"
               style={{ fontFamily: '"Outfit", sans-serif' }}
             >
               {product.description}
@@ -97,14 +94,14 @@ export default function ProductCard({ product, layout = 'grid' }) {
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
               <span
-                className="text-lg font-medium text-white"
+                className="text-lg font-medium text-black/80"
                 style={{ fontFamily: '"Outfit", sans-serif' }}
               >
                 Rs. {product.price.toLocaleString()}
               </span>
               {product.originalPrice && (
                 <span
-                  className="text-sm text-white/30 line-through"
+                  className="text-sm text-black/30 line-through"
                   style={{ fontFamily: '"Outfit", sans-serif' }}
                 >
                   Rs. {product.originalPrice.toLocaleString()}
@@ -115,7 +112,7 @@ export default function ProductCard({ product, layout = 'grid' }) {
               {(product.sizes || []).slice(0, 4).map(s => (
                 <span
                   key={s}
-                  className="text-xs border border-white/15 px-2 py-0.5 text-white/40"
+                  className="text-xs border border-black/15 px-2 py-0.5 text-black/40"
                   style={{ fontFamily: '"Outfit", sans-serif' }}
                 >
                   {s}
@@ -138,10 +135,9 @@ export default function ProductCard({ product, layout = 'grid' }) {
 
         {/* Image Shell */}
         <div
-          className="relative overflow-hidden bg-white/5"
+          className="relative overflow-hidden bg-black/5"
           style={{ paddingBottom: '133.33%' }}
         >
-          {/* ✅ Primary image — lazy + CORB fix */}
           <img
             src={img1}
             alt={product.name}
@@ -156,7 +152,6 @@ export default function ProductCard({ product, layout = 'grid' }) {
             onError={(e) => { e.target.src = FALLBACK }}
           />
 
-          {/* ✅ Secondary image — only renders in DOM when img2 exists */}
           {img2 && (
             <img
               src={img2}
@@ -170,7 +165,7 @@ export default function ProductCard({ product, layout = 'grid' }) {
                 transform: hovered ? 'scale(1.07)' : 'scale(1.03)',
                 transition: 'opacity 0.6s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               }}
-             onError={(e) => { if (e.target.src !== FALLBACK) e.target.src = FALLBACK }}
+              onError={(e) => { if (e.target.src !== FALLBACK) e.target.src = FALLBACK }}
             />
           )}
 
@@ -211,24 +206,24 @@ export default function ProductCard({ product, layout = 'grid' }) {
           {/* Wishlist */}
           <button
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setWishlist(!wishlist) }}
-            className="absolute w-9 h-9 bg-[#111] flex items-center justify-center z-20"
+            className="absolute w-9 h-9 bg-white flex items-center justify-center z-20"
             style={{
               top: discount ? '46px' : '12px',
               right: '12px',
               opacity: hovered ? 1 : 0,
               transform: hovered ? 'translateY(0) scale(1)' : 'translateY(-8px) scale(0.85)',
               transition: 'opacity 0.3s ease 0.05s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s',
-              boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
             }}
           >
             <Heart
               size={14}
-              className={wishlist ? 'fill-red-400 text-red-400' : 'text-white/60'}
+              className={wishlist ? 'fill-red-400 text-red-400' : 'text-black/40'}
               style={{ transition: 'color 0.2s ease, fill 0.2s ease' }}
             />
           </button>
 
-          {/* Quick View — button not Link */}
+          {/* Quick View */}
           <div
             className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
             style={{
@@ -238,12 +233,12 @@ export default function ProductCard({ product, layout = 'grid' }) {
           >
             <button
               onClick={handleQuickView}
-              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs tracking-widest uppercase font-medium text-black pointer-events-auto"
+              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 text-xs tracking-widest uppercase font-medium text-black/70 pointer-events-auto"
               style={{
                 fontFamily: '"Outfit", sans-serif',
                 transform: hovered ? 'translateY(0) scale(1)' : 'translateY(6px) scale(0.95)',
                 transition: 'transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1) 0.1s',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
               }}
             >
               <Eye size={13} />
@@ -293,7 +288,7 @@ export default function ProductCard({ product, layout = 'grid' }) {
             className="text-lg md:text-xl font-light leading-tight mb-2"
             style={{
               fontFamily: '"Cormorant Garamond", serif',
-              color: hovered ? '#fb923c' : '#ffffff',
+              color: hovered ? '#fb923c' : 'rgba(0,0,0,0.8)',
               transition: 'color 0.3s ease',
             }}
           >
@@ -302,14 +297,14 @@ export default function ProductCard({ product, layout = 'grid' }) {
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
               <span
-                className="font-medium text-white"
+                className="font-medium text-black/80"
                 style={{ fontFamily: '"Outfit", sans-serif' }}
               >
                 Rs. {product.price.toLocaleString()}
               </span>
               {product.originalPrice && (
                 <span
-                  className="text-sm text-white/30 line-through"
+                  className="text-sm text-black/30 line-through"
                   style={{ fontFamily: '"Outfit", sans-serif' }}
                 >
                   Rs. {product.originalPrice.toLocaleString()}
@@ -319,7 +314,7 @@ export default function ProductCard({ product, layout = 'grid' }) {
             <div className="flex items-center gap-1">
               <span className="text-orange-400 text-xs">★</span>
               <span
-                className="text-xs text-white/40"
+                className="text-xs text-black/40"
                 style={{ fontFamily: '"Outfit", sans-serif' }}
               >
                 {product.rating}

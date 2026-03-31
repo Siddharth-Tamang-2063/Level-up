@@ -81,8 +81,8 @@ export default function AdminDashboard() {
       <div className="max-w-7xl">
         {/* Page header */}
         <div className="mb-8">
-          <h1 className="font-sans text-2xl font-semibold text-charcoal">Dashboard</h1>
-          <p className="text-sm text-charcoal/50 font-sans mt-1">Welcome back. Here's what's happening with Level Up Fashion today.</p>
+          <h1 className="font-sans text-2xl font-semibold text-white">Dashboard</h1>
+          <p className="text-sm text-white/50 font-sans mt-1">Welcome back. Here's what's happening with Level Up Fashion today.</p>
         </div>
 
         {/* Stats Grid */}
@@ -98,8 +98,8 @@ export default function AdminDashboard() {
                   {stat.change}
                 </div>
               </div>
-              <p className="font-sans text-2xl font-semibold text-charcoal">{stat.value}</p>
-              <p className="text-xs text-charcoal/40 font-sans mt-1">{stat.label}</p>
+              <p className="font-sans text-2xl font-semibold text-white">{stat.value}</p>
+              <p className="text-xs text-white/40 font-sans mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -109,8 +109,8 @@ export default function AdminDashboard() {
           <div className="lg:col-span-2 bg-white p-6 rounded border border-gray-100">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="font-sans font-semibold text-charcoal">Revenue Overview</h3>
-                <p className="text-xs text-charcoal/40 font-sans mt-0.5">Last 6 months</p>
+                <h3 className="font-sans font-semibold text-white">Revenue Overview</h3>
+                <p className="text-xs text-white/40 font-sans mt-0.5">Last 6 months</p>
               </div>
               <span className="text-xs font-sans font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">+12.5%</span>
             </div>
@@ -120,42 +120,42 @@ export default function AdminDashboard() {
             <div className="flex items-end gap-1 mt-1">
               {CHART_DATA.map(d => (
                 <div key={d.month} className="flex-1 text-center">
-                  <p className="text-[10px] text-charcoal/30 font-sans">{d.month}</p>
+                  <p className="text-[10px] text-white/30 font-sans">{d.month}</p>
                 </div>
               ))}
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-50 flex gap-6">
               <div>
-                <p className="text-xs text-charcoal/40 font-sans">Total Revenue</p>
-                <p className="font-sans font-semibold text-charcoal">Rs. 45,50,000</p>
+                <p className="text-xs text-white/40 font-sans">Total Revenue</p>
+                <p className="font-sans font-semibold text-white">Rs. 45,50,000</p>
               </div>
               <div>
-                <p className="text-xs text-charcoal/40 font-sans">Total Orders</p>
-                <p className="font-sans font-semibold text-charcoal">1,032</p>
+                <p className="text-xs text-white/40 font-sans">Total Orders</p>
+                <p className="font-sans font-semibold text-white">1,032</p>
               </div>
               <div>
-                <p className="text-xs text-charcoal/40 font-sans">Avg. Order Value</p>
-                <p className="font-sans font-semibold text-charcoal">Rs. 4,408</p>
+                <p className="text-xs text-white/40 font-sans">Avg. Order Value</p>
+                <p className="font-sans font-semibold text-white">Rs. 4,408</p>
               </div>
             </div>
           </div>
 
           {/* Top products */}
           <div className="bg-white p-6 rounded border border-gray-100">
-            <h3 className="font-sans font-semibold text-charcoal mb-4">Top Products</h3>
+            <h3 className="font-sans font-semibold text-white mb-4">Top Products</h3>
             <div className="space-y-4">
               {PRODUCTS.slice(0, 5).map((p, i) => (
                 <div key={p.id} className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-charcoal/30 w-4">{i + 1}</span>
+                  <span className="text-xs font-mono text-white/30 w-4">{i + 1}</span>
                   <img src={p.images[0]} alt={p.name} className="w-10 h-12 object-cover bg-cream-200 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-sans font-medium text-charcoal truncate">{p.name}</p>
-                    <p className="text-xs text-charcoal/40 font-sans">${p.price}</p>
+                    <p className="text-xs font-sans font-medium text-white truncate">{p.name}</p>
+                    <p className="text-xs text-white/40 font-sans">${p.price}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-sans font-medium text-charcoal">{p.reviews}</p>
-                    <p className="text-[10px] text-charcoal/30 font-sans">sold</p>
+                    <p className="text-xs font-sans font-medium text-white">{p.reviews}</p>
+                    <p className="text-[10px] text-white/30 font-sans">sold</p>
                   </div>
                 </div>
               ))}
@@ -166,7 +166,7 @@ export default function AdminDashboard() {
         {/* Recent Orders */}
         <div className="bg-white rounded border border-gray-100">
           <div className="p-6 border-b border-gray-50 flex items-center justify-between">
-            <h3 className="font-sans font-semibold text-charcoal">Recent Orders</h3>
+            <h3 className="font-sans font-semibold text-white">Recent Orders</h3>
             <Link to="/admin/orders" className="text-xs font-sans text-sand hover:text-sand-dark transition-colors flex items-center gap-1">
               View All <ArrowRight size={12} />
             </Link>
@@ -176,20 +176,20 @@ export default function AdminDashboard() {
               <thead>
                 <tr className="border-b border-gray-50">
                   {['Order', 'Customer', 'Date', 'Amount', 'Status'].map(h => (
-                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-charcoal/40">{h}</th>
+                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-white/40">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {ORDERS.slice(0, 5).map(order => (
                   <tr key={order.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                    <td className="px-6 py-4 text-sm font-mono text-charcoal/70">{order.id}</td>
+                    <td className="px-6 py-4 text-sm font-mono text-white/70">{order.id}</td>
                     <td className="px-6 py-4">
-                      <p className="text-sm font-sans font-medium text-charcoal">{order.customer}</p>
-                      <p className="text-xs text-charcoal/40 font-sans">{order.email}</p>
+                      <p className="text-sm font-sans font-medium text-white">{order.customer}</p>
+                      <p className="text-xs text-white/40 font-sans">{order.email}</p>
                     </td>
-                    <td className="px-6 py-4 text-sm font-sans text-charcoal/60">{order.date}</td>
-                    <td className="px-6 py-4 text-sm font-sans font-medium text-charcoal">${order.total}</td>
+                    <td className="px-6 py-4 text-sm font-sans text-white/60">{order.date}</td>
+                    <td className="px-6 py-4 text-sm font-sans font-medium text-white">${order.total}</td>
                     <td className="px-6 py-4">
                       <span className={`text-xs font-sans font-medium px-2.5 py-1 rounded-full ${STATUS_COLORS[order.status]}`}>
                         {order.status}

@@ -119,14 +119,13 @@ export default function Collection() {
 
       {/* Sticky Category Bar */}
       <div style={{ top: navHeight }} className="sticky z-30 bg-cream/95 border-b border-charcoal/8 shadow-sm">
-        {/* Mobile: flex-wrap (2 lines) | Desktop: single row no-wrap */}
         <div className="flex flex-wrap md:flex-nowrap gap-1.5 px-4 py-2 md:overflow-x-auto md:no-scrollbar">
           {CATEGORIES.map(cat => (
             <button key={cat.id} onClick={() => setCategory(cat.id)}
               className={`px-3 py-1.5 text-[10px] md:text-xs tracking-widest uppercase font-sans font-medium whitespace-nowrap transition-all duration-200 md:flex-shrink-0
                 ${category === cat.id
                   ? 'bg-charcoal text-cream'
-                  : 'text-charcoal/50 border border-charcoal/10'
+                  : 'text-black/50 border border-charcoal/10'
                 }`}>
               {cat.name}
             </button>
@@ -141,11 +140,11 @@ export default function Collection() {
 
           {/* Desktop search */}
           <div className="relative flex-1 max-w-xs hidden md:block">
-            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-charcoal/30" />
+            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-black/40" />
             <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..."
-              className="w-full pl-8 pr-4 py-2 border border-charcoal/15 bg-transparent text-sm font-sans text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sand transition-colors" />
+              className="w-full pl-8 pr-4 py-2 border border-charcoal/15 bg-transparent text-sm font-sans text-black/80 placeholder:text-black/40 focus:outline-none focus:border-sand transition-colors" />
             {search && (
-              <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-charcoal/30 hover:text-charcoal">
+              <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-black/40 hover:text-black">
                 <X size={12} />
               </button>
             )}
@@ -170,7 +169,7 @@ export default function Collection() {
 
           {/* Mobile filter button */}
           <button onClick={() => setFiltersOpen(true)}
-            className="md:hidden flex items-center gap-1.5 border border-charcoal/20 px-3 py-2 text-[10px] tracking-widest uppercase font-sans font-medium text-charcoal hover:border-charcoal transition-all">
+            className="md:hidden flex items-center gap-1.5 border border-charcoal/20 px-3 py-2 text-[10px] tracking-widest uppercase font-sans font-medium text-black/60 hover:border-charcoal transition-all">
             <SlidersHorizontal size={12} />
             Filters
             {activeFiltersCount > 0 && (
@@ -181,7 +180,7 @@ export default function Collection() {
           {/* Sort */}
           <div className="relative">
             <button onClick={() => setSortOpen(!sortOpen)}
-              className="flex items-center gap-1.5 sm:gap-2 border border-charcoal/20 px-3 sm:px-4 py-2 text-[10px] sm:text-xs tracking-widest uppercase font-sans font-medium text-charcoal hover:border-charcoal hover:bg-cream-200 transition-all">
+              className="flex items-center gap-1.5 sm:gap-2 border border-charcoal/20 px-3 sm:px-4 py-2 text-[10px] sm:text-xs tracking-widest uppercase font-sans font-medium text-black/60 hover:border-charcoal hover:bg-cream-200 transition-all">
               <span className="hidden sm:inline">{SORT_OPTIONS.find(s => s.value === sort)?.label}</span>
               <span className="sm:hidden">Sort</span>
               <ChevronDown size={10} className={`transition-transform duration-200 ${sortOpen ? 'rotate-180' : ''}`} />
@@ -193,7 +192,7 @@ export default function Collection() {
                   {SORT_OPTIONS.map(opt => (
                     <button key={opt.value} onClick={() => { setSort(opt.value); setSortOpen(false) }}
                       className={`w-full text-left px-4 sm:px-5 py-3 text-[10px] sm:text-xs tracking-widest uppercase font-sans transition-colors flex items-center justify-between
-                        ${sort === opt.value ? 'bg-charcoal text-cream' : 'text-charcoal hover:bg-cream-200'}`}>
+                        ${sort === opt.value ? 'bg-charcoal text-cream' : 'text-black/60 hover:bg-cream-200'}`}>
                       {opt.label}
                       {sort === opt.value && <span className="text-sand">✓</span>}
                     </button>
@@ -206,11 +205,11 @@ export default function Collection() {
           {/* Grid/List toggle — desktop only */}
           <div className="hidden md:flex border border-charcoal/15 overflow-hidden">
             <button onClick={() => setLayout('grid')}
-              className={`p-2.5 transition-colors duration-150 ${layout === 'grid' ? 'bg-charcoal text-cream' : 'text-charcoal/40 hover:text-charcoal hover:bg-cream-200'}`}>
+              className={`p-2.5 transition-colors duration-150 ${layout === 'grid' ? 'bg-charcoal text-cream' : 'text-black/40 hover:text-black hover:bg-cream-200'}`}>
               <Grid size={14} />
             </button>
             <button onClick={() => setLayout('list')}
-              className={`p-2.5 transition-colors duration-150 border-l border-charcoal/10 ${layout === 'list' ? 'bg-charcoal text-cream' : 'text-charcoal/40 hover:text-charcoal hover:bg-cream-200'}`}>
+              className={`p-2.5 transition-colors duration-150 border-l border-charcoal/10 ${layout === 'list' ? 'bg-charcoal text-cream' : 'text-black/40 hover:text-black hover:bg-cream-200'}`}>
               <List size={14} />
             </button>
           </div>
@@ -237,25 +236,25 @@ export default function Collection() {
           <aside className="hidden md:block w-48 lg:w-52 flex-shrink-0">
             <div style={{ top: navHeight + 56 }} className="sticky space-y-8">
               <div>
-                <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Search</p>
+                <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-4">Search</p>
                 <div className="relative">
-                  <Search size={12} className="absolute left-3 top-1/2 -translate-y-1/2 text-charcoal/30" />
+                  <Search size={12} className="absolute left-3 top-1/2 -translate-y-1/2 text-black/30" />
                   <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search..."
-                    className="w-full pl-7 pr-3 py-2 border border-charcoal/15 bg-transparent text-xs font-sans text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sand transition-colors" />
+                    className="w-full pl-7 pr-3 py-2 border border-charcoal/15 bg-transparent text-xs font-sans text-black/80 placeholder:text-black/30 focus:outline-none focus:border-sand transition-colors" />
                 </div>
               </div>
               <div>
-                <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Category</p>
+                <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-4">Category</p>
                 <div className="space-y-0.5">
                   {CATEGORIES.map(cat => (
                     <button key={cat.id} onClick={() => setCategory(cat.id)}
                       className={`w-full text-left flex items-center justify-between py-2 text-sm font-sans transition-all duration-150 group
-                        ${category === cat.id ? 'text-charcoal font-medium' : 'text-charcoal/45 hover:text-charcoal'}`}>
+                        ${category === cat.id ? 'text-black/80 font-medium' : 'text-black/40 hover:text-black/80'}`}>
                       <span className="flex items-center gap-2">
                         <span className={`w-1 h-1 rounded-full bg-sand transition-opacity ${category === cat.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'}`} />
                         {cat.name}
                       </span>
-                      <span className="text-xs text-charcoal/30 font-sans">
+                      <span className="text-xs text-black/30 font-sans">
                         {PRODUCTS.filter(p => cat.id === 'all' || p.category === cat.id).length}
                       </span>
                     </button>
@@ -263,12 +262,12 @@ export default function Collection() {
                 </div>
               </div>
               <div>
-                <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Price</p>
+                <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-4">Price</p>
                 <div className="space-y-0.5">
                   {PRICE_RANGES.map((range, i) => (
                     <button key={i} onClick={() => setPriceRange(priceRange?.label === range.label ? null : range)}
                       className={`w-full text-left flex items-center gap-2 py-2 text-sm font-sans transition-all duration-150 group
-                        ${priceRange?.label === range.label ? 'text-charcoal font-medium' : 'text-charcoal/45 hover:text-charcoal'}`}>
+                        ${priceRange?.label === range.label ? 'text-black/80 font-medium' : 'text-black/40 hover:text-black/80'}`}>
                       <span className={`w-3 h-3 border flex items-center justify-center flex-shrink-0 transition-all
                         ${priceRange?.label === range.label ? 'border-charcoal bg-charcoal' : 'border-charcoal/25 group-hover:border-charcoal/60'}`}>
                         {priceRange?.label === range.label && <span className="w-1.5 h-1.5 bg-cream block" />}
@@ -295,8 +294,8 @@ export default function Collection() {
                 <div className="flex-shrink-0 pt-4 pb-3 px-6 border-b border-charcoal/5">
                   <div className="w-10 h-1 bg-charcoal/20 rounded-full mx-auto mb-4" />
                   <div className="flex items-center justify-between">
-                    <h3 className="font-display text-xl font-light">Filters</h3>
-                    <button onClick={() => setFiltersOpen(false)} className="p-1.5 text-charcoal/40 hover:text-charcoal"><X size={18} /></button>
+                    <h3 className="font-display text-xl font-light text-black/80">Filters</h3>
+                    <button onClick={() => setFiltersOpen(false)} className="p-1.5 text-black/40 hover:text-black"><X size={18} /></button>
                   </div>
                 </div>
 
@@ -304,22 +303,22 @@ export default function Collection() {
                 <div className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
                   {/* Search */}
                   <div>
-                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Search</p>
+                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-3">Search</p>
                     <div className="relative">
-                      <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-charcoal/30" />
+                      <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-black/30" />
                       <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..."
-                        className="w-full pl-9 pr-4 py-2.5 border border-charcoal/15 bg-transparent text-sm font-sans text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sand transition-colors" />
-                      {search && <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-charcoal/30"><X size={12} /></button>}
+                        className="w-full pl-9 pr-4 py-2.5 border border-charcoal/15 bg-transparent text-sm font-sans text-black/80 placeholder:text-black/30 focus:outline-none focus:border-sand transition-colors" />
+                      {search && <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-black/30"><X size={12} /></button>}
                     </div>
                   </div>
                   {/* Category */}
                   <div>
-                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Category</p>
+                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-3">Category</p>
                     <div className="flex flex-wrap gap-2">
                       {CATEGORIES.map(cat => (
                         <button key={cat.id} onClick={() => setCategory(cat.id)}
                           className={`px-4 py-2 text-xs tracking-wider uppercase font-sans border transition-all
-                            ${category === cat.id ? 'bg-charcoal text-cream border-charcoal' : 'border-charcoal/15 text-charcoal/70 hover:border-charcoal'}`}>
+                            ${category === cat.id ? 'bg-charcoal text-cream border-charcoal' : 'border-charcoal/15 text-black/60 hover:border-charcoal'}`}>
                           {cat.name}
                         </button>
                       ))}
@@ -327,12 +326,12 @@ export default function Collection() {
                   </div>
                   {/* Price */}
                   <div>
-                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Price Range</p>
+                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-3">Price Range</p>
                     <div className="flex flex-wrap gap-2">
                       {PRICE_RANGES.map((range, i) => (
                         <button key={i} onClick={() => setPriceRange(priceRange?.label === range.label ? null : range)}
                           className={`px-4 py-2 text-xs font-sans border transition-all
-                            ${priceRange?.label === range.label ? 'bg-charcoal text-cream border-charcoal' : 'border-charcoal/15 text-charcoal/70 hover:border-charcoal'}`}>
+                            ${priceRange?.label === range.label ? 'bg-charcoal text-cream border-charcoal' : 'border-charcoal/15 text-black/60 hover:border-charcoal'}`}>
                           {range.label}
                         </button>
                       ))}
@@ -343,7 +342,7 @@ export default function Collection() {
                 {/* Sticky footer */}
                 <div className="flex-shrink-0 border-t border-charcoal/5 px-6 py-4 flex gap-3">
                   {activeFiltersCount > 0 && (
-                    <button onClick={clearAll} className="flex-1 border border-charcoal/20 py-3 text-xs tracking-widest uppercase font-sans font-medium text-charcoal hover:bg-cream-200 transition-colors">
+                    <button onClick={clearAll} className="flex-1 border border-charcoal/20 py-3 text-xs tracking-widest uppercase font-sans font-medium text-black/60 hover:bg-cream-200 transition-colors">
                       Clear All
                     </button>
                   )}
@@ -360,16 +359,16 @@ export default function Collection() {
             {products.length === 0 ? (
               <div className="text-center py-20 sm:py-32">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 border border-charcoal/10 flex items-center justify-center mx-auto mb-5 sm:mb-6">
-                  <Search size={22} className="text-charcoal/20" />
+                  <Search size={22} className="text-black/20" />
                 </div>
-                <p className="font-display text-2xl sm:text-3xl font-light text-charcoal/30 mb-2">No products found</p>
-                <p className="text-xs sm:text-sm text-charcoal/40 font-sans mb-6 sm:mb-8">Try adjusting your filters or search terms</p>
+                <p className="font-display text-2xl sm:text-3xl font-light text-black/30 mb-2">No products found</p>
+                <p className="text-xs sm:text-sm text-black/40 font-sans mb-6 sm:mb-8">Try adjusting your filters or search terms</p>
                 <button onClick={clearAll} className="btn-outline">Clear All Filters</button>
               </div>
             ) : (
               <>
-                <p className="text-xs font-sans text-charcoal/40 mb-4 sm:mb-6">
-                  Showing <span className="text-charcoal font-medium">{products.length}</span> products
+                <p className="text-xs font-sans text-black/40 mb-4 sm:mb-6">
+                  Showing <span className="text-black/80 font-medium">{products.length}</span> products
                   {search && <> for "<span className="text-sand">{search}</span>"</>}
                 </p>
                 {layout === 'list' ? (

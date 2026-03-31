@@ -2,10 +2,10 @@ import React from 'react'
 
 const variants = {
   primary: 'bg-charcoal text-cream hover:bg-charcoal-800 focus:ring-sand',
-  outline: 'border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream focus:ring-charcoal',
+  outline: 'border border-charcoal text-white hover:bg-charcoal hover:text-cream focus:ring-charcoal',
   sand: 'bg-sand text-white hover:bg-sand-dark focus:ring-sand',
-  ghost: 'text-charcoal hover:text-sand focus:ring-transparent',
-  white: 'bg-white text-charcoal hover:bg-cream focus:ring-charcoal',
+  ghost: 'text-white hover:text-sand focus:ring-transparent',
+  white: 'bg-white text-white hover:bg-cream focus:ring-charcoal',
 }
 const sizes = {
   sm: 'px-5 py-2.5 text-xs',

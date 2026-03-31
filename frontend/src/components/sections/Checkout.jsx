@@ -126,7 +126,7 @@ export default function Checkout() {
   if (items.length === 0) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
-        <p className="font-display text-2xl font-light text-charcoal/40 mb-4">Your bag is empty</p>
+        <p className="font-display text-2xl font-light text-black/40 mb-4">Your bag is empty</p>
         <Link to="/collection" className="text-sm font-sans text-sand underline">Shop Collection</Link>
       </div>
     )
@@ -138,10 +138,10 @@ export default function Checkout() {
 
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
-          <Link to="/cart" className="flex items-center gap-1.5 text-xs tracking-widest uppercase font-sans text-charcoal/50 hover:text-charcoal transition-colors">
+          <Link to="/cart" className="flex items-center gap-1.5 text-xs tracking-widest uppercase font-sans text-black/50 hover:text-black transition-colors">
             <ArrowLeft size={14} /> Back to Bag
           </Link>
-          <div className="flex items-center gap-1 text-xs font-sans text-charcoal/40">
+          <div className="flex items-center gap-1 text-xs font-sans text-black/40">
             <Lock size={11} />
             <span>Secure Checkout</span>
           </div>
@@ -155,11 +155,11 @@ export default function Checkout() {
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-sans font-medium transition-all duration-300 ${
                   i < step ? 'bg-charcoal text-cream' :
                   i === step ? 'bg-charcoal text-cream' :
-                  'bg-charcoal/10 text-charcoal/40'
+                  'bg-charcoal/10 text-black/50'
                 }`}>
                   {i < step ? '✓' : i + 1}
                 </div>
-                <span className={`text-xs tracking-widest uppercase font-sans hidden sm:block ${i === step ? 'text-charcoal font-medium' : 'text-charcoal/40'}`}>
+                <span className={`text-xs tracking-widest uppercase font-sans hidden sm:block ${i === step ? 'text-black/80 font-medium' : 'text-black/40'}`}>
                   {s}
                 </span>
               </div>
@@ -180,7 +180,7 @@ export default function Checkout() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Truck size={18} className="text-sand" />
-                  <h2 className="font-display text-2xl font-light text-charcoal">Shipping Information</h2>
+                  <h2 className="font-display text-2xl font-light text-black/80">Shipping Information</h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <Field label="First Name" error={errors.firstName}>
@@ -234,10 +234,9 @@ export default function Checkout() {
             {/* Step 1: Payment */}
             {step === 1 && (
               <div>
-                <h2 className="font-display text-2xl font-light text-charcoal mb-2">Payment Method</h2>
-                <p className="text-sm font-sans text-charcoal/50 mb-8">Choose your wallet, pay, then upload your screenshot</p>
+                <h2 className="font-display text-2xl font-light text-black/80 mb-2">Payment Method</h2>
+                <p className="text-sm font-sans text-black/50 mb-8">Choose your wallet, pay, then upload your screenshot</p>
 
-                {/* Method selector */}
                 {errors.method && <p className="text-xs text-red-500 font-sans mb-4">{errors.method}</p>}
 
                 <div className="space-y-3 mb-6">
@@ -258,8 +257,8 @@ export default function Checkout() {
                         {method.name[0]}
                       </div>
                       <div className="flex-1">
-                        <p className="font-sans font-medium text-charcoal text-sm">{method.name}</p>
-                        <p className="font-sans text-xs text-charcoal/50 mt-0.5">{method.description}</p>
+                        <p className="font-sans font-medium text-black/80 text-sm">{method.name}</p>
+                        <p className="font-sans text-xs text-black/50 mt-0.5">{method.description}</p>
                       </div>
                       <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                         selectedPayment === method.id ? 'border-charcoal bg-charcoal' : 'border-charcoal/20'
@@ -270,11 +269,8 @@ export default function Checkout() {
                   ))}
                 </div>
 
-                {/* Phone + screenshot — shows after method selected, but not for COD */}
                 {selectedPayment && selectedPayment !== 'cod' && (
                   <div className="space-y-6">
-
-                    {/* Step instructions */}
                     <div
                       className="p-4 text-xs font-sans space-y-1.5 rounded-sm"
                       style={{
@@ -291,7 +287,6 @@ export default function Checkout() {
                       <p>4. Enter your phone number and upload the screenshot below</p>
                     </div>
 
-                    {/* Phone number */}
                     <Field
                       label={`Registered ${selectedPayment === 'esewa' ? 'eSewa' : 'Khalti'} Phone Number`}
                       error={errors.paymentId}
@@ -305,9 +300,8 @@ export default function Checkout() {
                       />
                     </Field>
 
-                    {/* Screenshot upload */}
                     <div>
-                      <label className={`text-xs tracking-widest uppercase font-sans font-medium block mb-2 ${errors.screenshot ? 'text-red-500' : 'text-charcoal/60'}`}>
+                      <label className={`text-xs tracking-widest uppercase font-sans font-medium block mb-2 ${errors.screenshot ? 'text-red-500' : 'text-black/60'}`}>
                         {errors.screenshot || 'Transaction Screenshot *'}
                       </label>
 
@@ -326,12 +320,12 @@ export default function Checkout() {
                           }`}
                         >
                           <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-3 ${dragOver ? 'bg-sand/10' : 'bg-charcoal/5'}`}>
-                            <Upload size={20} className={dragOver ? 'text-sand' : 'text-charcoal/40'} />
+                            <Upload size={20} className={dragOver ? 'text-sand' : 'text-black/40'} />
                           </div>
-                          <p className="font-sans text-sm font-medium text-charcoal mb-1">
+                          <p className="font-sans text-sm font-medium text-black/80 mb-1">
                             {dragOver ? 'Drop it here' : 'Upload Screenshot'}
                           </p>
-                          <p className="font-sans text-xs text-charcoal/40 text-center">
+                          <p className="font-sans text-xs text-black/40 text-center">
                             Drag & drop or click to browse<br />PNG, JPG, WEBP · Max 5MB
                           </p>
                           <input
@@ -345,16 +339,15 @@ export default function Checkout() {
                       ) : (
                         <div className="relative border border-charcoal/15 bg-white p-3 rounded-sm">
                           <div className="flex items-start gap-4">
-                            {/* Preview thumbnail */}
                             <div className="w-20 h-24 flex-shrink-0 overflow-hidden bg-cream-200 rounded-sm">
                               <img src={screenshotPreview} alt="Transaction screenshot" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex-1 min-w-0 pt-1">
                               <div className="flex items-center gap-1.5 mb-1">
                                 <Image size={13} className="text-green-500 flex-shrink-0" />
-                                <p className="text-xs font-sans font-medium text-charcoal truncate">{screenshot?.name}</p>
+                                <p className="text-xs font-sans font-medium text-black/80 truncate">{screenshot?.name}</p>
                               </div>
-                              <p className="text-xs font-sans text-charcoal/40">
+                              <p className="text-xs font-sans text-black/40">
                                 {screenshot ? (screenshot.size / 1024).toFixed(0) + ' KB' : ''}
                               </p>
                               <div className="flex items-center gap-1 mt-2">
@@ -363,7 +356,7 @@ export default function Checkout() {
                               </div>
                               <button
                                 onClick={removeScreenshot}
-                                className="mt-3 text-xs font-sans text-charcoal/40 hover:text-red-400 transition-colors flex items-center gap-1"
+                                className="mt-3 text-xs font-sans text-black/40 hover:text-red-400 transition-colors flex items-center gap-1"
                               >
                                 <X size={11} /> Remove
                               </button>
@@ -372,11 +365,9 @@ export default function Checkout() {
                         </div>
                       )}
                     </div>
-
                   </div>
                 )}
 
-                {/* COD confirmation message */}
                 {selectedPayment === 'cod' && (
                   <div className="mt-4 p-4 text-xs font-sans space-y-1.5 rounded-sm" style={{ background: '#f0fdf4', color: '#166534' }}>
                     <p className="font-medium text-sm mb-2">🏠 Cash on Delivery Selected</p>
@@ -385,7 +376,7 @@ export default function Checkout() {
                   </div>
                 )}
 
-                <div className="mt-6 flex items-center gap-2 text-xs font-sans text-charcoal/40">
+                <div className="mt-6 flex items-center gap-2 text-xs font-sans text-black/40">
                   <Lock size={11} />
                   Your order details are safe and secure.
                 </div>
@@ -395,24 +386,22 @@ export default function Checkout() {
             {/* Step 2: Review */}
             {step === 2 && (
               <div>
-                <h2 className="font-display text-2xl font-light text-charcoal mb-8">Review Order</h2>
+                <h2 className="font-display text-2xl font-light text-black/80 mb-8">Review Order</h2>
 
-                {/* Shipping summary */}
                 <div className="border border-charcoal/10 p-5 mb-4 bg-white">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal">Shipping To</p>
+                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60">Shipping To</p>
                     <button onClick={() => setStep(0)} className="text-xs font-sans text-sand underline">Edit</button>
                   </div>
-                  <p className="font-sans text-sm text-charcoal">{shipping.firstName} {shipping.lastName}</p>
-                  <p className="font-sans text-sm text-charcoal/60">{shipping.address}</p>
-                  <p className="font-sans text-sm text-charcoal/60">{shipping.city}, {shipping.state} {shipping.zip}</p>
-                  <p className="font-sans text-sm text-charcoal/60">{shipping.email}</p>
+                  <p className="font-sans text-sm text-black/80">{shipping.firstName} {shipping.lastName}</p>
+                  <p className="font-sans text-sm text-black/60">{shipping.address}</p>
+                  <p className="font-sans text-sm text-black/60">{shipping.city}, {shipping.state} {shipping.zip}</p>
+                  <p className="font-sans text-sm text-black/60">{shipping.email}</p>
                 </div>
 
-                {/* Payment summary */}
                 <div className="border border-charcoal/10 p-5 mb-4 bg-white">
                   <div className="flex items-center justify-between mb-3">
-                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal">Payment</p>
+                    <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60">Payment</p>
                     <button onClick={() => setStep(1)} className="text-xs font-sans text-sand underline">Edit</button>
                   </div>
                   <div className="flex items-start gap-4">
@@ -424,28 +413,24 @@ export default function Checkout() {
                         {PAYMENT_METHODS.find(m => m.id === selectedPayment)?.name[0]}
                       </div>
                       <div>
-                        <p className="font-sans text-sm text-charcoal">{PAYMENT_METHODS.find(m => m.id === selectedPayment)?.name}</p>
-                        <p className="font-sans text-xs text-charcoal/50">{paymentId}</p>
+                        <p className="font-sans text-sm text-black/80">{PAYMENT_METHODS.find(m => m.id === selectedPayment)?.name}</p>
+                        <p className="font-sans text-xs text-black/50">{paymentId}</p>
                       </div>
                     </div>
-                    {/* Screenshot thumbnail in review */}
                     {screenshotPreview && (
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <div className="w-12 h-14 overflow-hidden rounded-sm border border-charcoal/10">
                           <img src={screenshotPreview} alt="Transaction" className="w-full h-full object-cover" />
                         </div>
-                        <div>
-                          <div className="flex items-center gap-1">
-                            <CheckCircle size={11} className="text-green-500" />
-                            <span className="text-xs font-sans text-green-600">SS uploaded</span>
-                          </div>
+                        <div className="flex items-center gap-1">
+                          <CheckCircle size={11} className="text-green-500" />
+                          <span className="text-xs font-sans text-green-600">SS uploaded</span>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* Items list */}
                 <div className="space-y-4">
                   {items.map(item => {
                     const productMatch = PRODUCTS.find(p => p.id === item.id)
@@ -456,10 +441,10 @@ export default function Checkout() {
                           <img src={imageSrc} alt={item.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-display text-base font-light text-charcoal truncate">{item.name}</p>
-                          <p className="text-xs text-charcoal/50 font-sans mt-0.5">Size: {item.size} · Qty: {item.qty}</p>
+                          <p className="font-display text-base font-light text-black/80 truncate">{item.name}</p>
+                          <p className="text-xs text-black/50 font-sans mt-0.5">Size: {item.size} · Qty: {item.qty}</p>
                         </div>
-                        <span className="font-sans text-sm font-medium text-charcoal flex-shrink-0">
+                        <span className="font-sans text-sm font-medium text-black/80 flex-shrink-0">
                           Rs. {(item.price * item.qty).toLocaleString()}
                         </span>
                       </div>
@@ -473,7 +458,7 @@ export default function Checkout() {
             <div className="flex items-center justify-between mt-10">
               {step > 0 ? (
                 <button onClick={() => setStep(s => s - 1)}
-                  className="flex items-center gap-2 text-xs tracking-widest uppercase font-sans text-charcoal/50 hover:text-charcoal transition-colors">
+                  className="flex items-center gap-2 text-xs tracking-widest uppercase font-sans text-black/50 hover:text-black transition-colors">
                   <ArrowLeft size={14} /> Back
                 </button>
               ) : <div />}
@@ -495,7 +480,7 @@ export default function Checkout() {
           {/* ── Right: Order Summary ── */}
           <div className="lg:sticky lg:top-24 h-fit">
             <div className="bg-white border border-charcoal/10 p-6">
-              <h3 className="font-display text-lg font-light text-charcoal mb-5">Order Summary</h3>
+              <h3 className="font-display text-lg font-light text-black/80 mb-5">Order Summary</h3>
               <div className="space-y-3 mb-5 max-h-60 overflow-y-auto pr-1">
                 {items.map(item => {
                   const productMatch = PRODUCTS.find(p => p.id === item.id)
@@ -511,10 +496,10 @@ export default function Checkout() {
                         </span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-sans text-xs text-charcoal truncate">{item.name}</p>
-                        <p className="text-xs text-charcoal/40 font-sans">{item.size}</p>
+                        <p className="font-sans text-xs text-black/80 truncate">{item.name}</p>
+                        <p className="text-xs text-black/40 font-sans">{item.size}</p>
                       </div>
-                      <span className="font-sans text-xs font-medium text-charcoal flex-shrink-0">
+                      <span className="font-sans text-xs font-medium text-black/80 flex-shrink-0">
                         Rs. {(item.price * item.qty).toLocaleString()}
                       </span>
                     </div>
@@ -522,16 +507,16 @@ export default function Checkout() {
                 })}
               </div>
               <div className="border-t border-charcoal/10 pt-4 space-y-2 text-sm font-sans">
-                <div className="flex justify-between text-charcoal/60">
+                <div className="flex justify-between text-black/60">
                   <span>Subtotal</span><span>Rs. {subtotal.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-charcoal/60">
+                <div className="flex justify-between text-black/60">
                   <span>Delivery</span><span>{shippingCost === 0 ? 'Free' : `Rs. ${shippingCost}`}</span>
                 </div>
               </div>
               <div className="border-t border-charcoal/20 mt-3 pt-3 flex justify-between">
-                <span className="font-sans font-medium text-charcoal">Total</span>
-                <span className="font-display text-xl font-light text-charcoal">Rs. {total.toLocaleString()}</span>
+                <span className="font-sans font-medium text-black/80">Total</span>
+                <span className="font-display text-xl font-light text-black/80">Rs. {total.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -545,7 +530,7 @@ export default function Checkout() {
 function Field({ label, error, children, className = '' }) {
   return (
     <div className={`flex flex-col gap-1.5 ${className}`}>
-      <label className={`text-xs tracking-widest uppercase font-sans font-medium ${error ? 'text-red-500' : 'text-charcoal/60'}`}>
+      <label className={`text-xs tracking-widest uppercase font-sans font-medium ${error ? 'text-red-500' : 'text-black/60'}`}>
         {error || label}
       </label>
       {children}
@@ -554,7 +539,7 @@ function Field({ label, error, children, className = '' }) {
 }
 
 function inputCls(error) {
-  return `w-full px-4 py-3 text-sm font-sans border bg-white text-charcoal placeholder:text-charcoal/30 focus:outline-none transition-colors ${
+  return `w-full px-4 py-3 text-sm font-sans border bg-white text-black/80 placeholder:text-black/30 focus:outline-none transition-colors ${
     error ? 'border-red-300 focus:border-red-400' : 'border-charcoal/20 focus:border-sand'
   }`
 }

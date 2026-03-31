@@ -9,7 +9,7 @@ export default function OrderConfirmation() {
   if (!order) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
-        <p className="font-display text-2xl font-light text-charcoal/40 mb-4">No order found</p>
+        <p className="font-display text-2xl font-light text-black/40 mb-4">No order found</p>
         <Link to="/" className="text-sm font-sans text-sand underline">Go Home</Link>
       </div>
     )
@@ -23,16 +23,16 @@ export default function OrderConfirmation() {
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 rounded-full bg-charcoal/5 flex items-center justify-center">
-              <CheckCircle size={40} className="text-charcoal" strokeWidth={1.5} />
+              <CheckCircle size={40} className="text-black/60" strokeWidth={1.5} />
             </div>
           </div>
           <p className="text-xs tracking-ultra uppercase font-sans text-sand mb-3">Order Confirmed</p>
-          <h1 className="font-display text-3xl md:text-4xl font-light text-charcoal mb-3">
+          <h1 className="font-display text-3xl md:text-4xl font-light text-black/80 mb-3">
             Thank You, {order.shipping.firstName}!
           </h1>
-          <p className="font-sans text-charcoal/50 text-sm max-w-sm mx-auto">
+          <p className="font-sans text-black/50 text-sm max-w-sm mx-auto">
             Your order has been placed successfully. We'll contact you at{' '}
-            <span className="text-charcoal">{order.shipping.email}</span> with delivery updates.
+            <span className="text-black/80">{order.shipping.email}</span> with delivery updates.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export default function OrderConfirmation() {
         <div className="border border-charcoal/10 bg-white mb-6">
           <div className="flex items-center gap-2 px-6 py-4 border-b border-charcoal/10">
             <Package size={15} className="text-sand" />
-            <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal">Items Ordered</p>
+            <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60">Items Ordered</p>
           </div>
           <div className="divide-y divide-charcoal/5">
             {order.items.map(item => (
@@ -61,10 +61,10 @@ export default function OrderConfirmation() {
                   <img src={item.images?.[0]} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-display text-base font-light text-charcoal truncate">{item.name}</p>
-                  <p className="text-xs text-charcoal/50 font-sans mt-0.5">Size: {item.size} · Qty: {item.qty}</p>
+                  <p className="font-display text-base font-light text-black/80 truncate">{item.name}</p>
+                  <p className="text-xs text-black/50 font-sans mt-0.5">Size: {item.size} · Qty: {item.qty}</p>
                 </div>
-                <span className="font-sans text-sm font-medium text-charcoal flex-shrink-0">
+                <span className="font-sans text-sm font-medium text-black/80 flex-shrink-0">
                   Rs. {(item.price * item.qty).toLocaleString()}
                 </span>
               </div>
@@ -76,25 +76,25 @@ export default function OrderConfirmation() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {/* Shipping address */}
           <div className="border border-charcoal/10 p-5 bg-white">
-            <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Shipping To</p>
-            <p className="font-sans text-sm text-charcoal">{order.shipping.firstName} {order.shipping.lastName}</p>
-            <p className="font-sans text-sm text-charcoal/60">{order.shipping.address}</p>
-            <p className="font-sans text-sm text-charcoal/60">{order.shipping.city}, {order.shipping.state} {order.shipping.zip}</p>
+            <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-3">Shipping To</p>
+            <p className="font-sans text-sm text-black/80">{order.shipping.firstName} {order.shipping.lastName}</p>
+            <p className="font-sans text-sm text-black/60">{order.shipping.address}</p>
+            <p className="font-sans text-sm text-black/60">{order.shipping.city}, {order.shipping.state} {order.shipping.zip}</p>
           </div>
 
           {/* Price breakdown */}
           <div className="border border-charcoal/10 p-5 bg-white">
-            <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Payment Summary</p>
+            <p className="text-xs tracking-widest uppercase font-sans font-medium text-black/60 mb-3">Payment Summary</p>
             <div className="space-y-1.5 text-sm font-sans">
-              <div className="flex justify-between text-charcoal/60">
+              <div className="flex justify-between text-black/60">
                 <span>Subtotal</span>
                 <span>Rs. {order.subtotal.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-charcoal/60">
+              <div className="flex justify-between text-black/60">
                 <span>Delivery</span>
                 <span>Rs. {order.shippingCost}</span>
               </div>
-              <div className="flex justify-between font-medium text-charcoal border-t border-charcoal/10 pt-2 mt-2">
+              <div className="flex justify-between font-medium text-black/80 border-t border-charcoal/10 pt-2 mt-2">
                 <span>Total</span>
                 <span>Rs. {order.total.toLocaleString()}</span>
               </div>
@@ -104,8 +104,8 @@ export default function OrderConfirmation() {
 
         {/* Estimated delivery */}
         <div className="text-center mb-10 py-5 border border-dashed border-charcoal/20">
-          <p className="text-xs tracking-widest uppercase font-sans text-charcoal/40 mb-1">Estimated Delivery</p>
-          <p className="font-display text-xl font-light text-charcoal">2–3 Days (Kathmandu) · 3–7 Days (Nepal)</p>
+          <p className="text-xs tracking-widest uppercase font-sans text-black/40 mb-1">Estimated Delivery</p>
+          <p className="font-display text-xl font-light text-black/80">2–3 Days (Kathmandu) · 3–7 Days (Nepal)</p>
         </div>
 
         {/* CTA buttons */}
@@ -118,7 +118,7 @@ export default function OrderConfirmation() {
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center justify-center gap-2 border border-charcoal/20 text-charcoal px-8 py-4 text-xs tracking-widest uppercase font-sans font-medium hover:border-charcoal transition-colors"
+            className="inline-flex items-center justify-center gap-2 border border-charcoal/20 text-black/80 px-8 py-4 text-xs tracking-widest uppercase font-sans font-medium hover:border-charcoal transition-colors"
           >
             Go Home
           </Link>

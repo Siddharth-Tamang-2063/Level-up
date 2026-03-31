@@ -80,18 +80,18 @@ export default function AdminLayout({ children }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 sticky top-0 z-20">
-          <button className="lg:hidden text-charcoal" onClick={() => setSidebarOpen(true)}>
+          <button className="lg:hidden text-white" onClick={() => setSidebarOpen(true)}>
             <Menu size={20} />
           </button>
 
           <div className="hidden lg:block">
-            <p className="font-sans text-xs text-charcoal/40">
+            <p className="font-sans text-xs text-white/40">
               {NAV.find(n => n.href === location.pathname)?.label || 'Dashboard'}
             </p>
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            <button className="relative p-2 text-charcoal/50 hover:text-charcoal transition-colors">
+            <button className="relative p-2 text-white/50 hover:text-white transition-colors">
               <Bell size={18} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-400 rounded-full" />
             </button>
@@ -100,8 +100,8 @@ export default function AdminLayout({ children }) {
                 <span className="text-white text-xs font-medium font-sans">A</span>
               </div>
               <div className="hidden md:block">
-                <p className="text-xs font-medium font-sans text-charcoal">Admin</p>
-                <p className="text-[10px] text-charcoal/40 font-sans">admin@On Pon Collection fashion.com</p>
+                <p className="text-xs font-medium font-sans text-white">Admin</p>
+                <p className="text-[10px] text-white/40 font-sans">admin@On Pon Collection fashion.com</p>
               </div>
             </div>
           </div>

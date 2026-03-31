@@ -40,15 +40,15 @@ export default function Contact() {
                   <Icon size={16} className="text-sand" />
                 </div>
                 <div>
-                  <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-2">{title}</p>
-                  {lines.map(l => <p key={l} className="text-sm font-sans text-charcoal/60 font-light">{l}</p>)}
+                  <p className="text-xs tracking-widest uppercase font-sans font-medium text-white mb-2">{title}</p>
+                  {lines.map(l => <p key={l} className="text-sm font-sans text-white/60 font-light">{l}</p>)}
                 </div>
               </div>
             ))}
 
             {/* Socials */}
             <div>
-              <p className="text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-4">Follow On Pon Collection </p>
+              <p className="text-xs tracking-widest uppercase font-sans font-medium text-white mb-4">Follow On Pon Collection </p>
               <div className="flex gap-3">
                 {[
                   { Icon: Instagram, label: 'Instagram', href: '#' },
@@ -57,7 +57,7 @@ export default function Contact() {
                   { Icon: Youtube, label: 'YouTube', href: '#' },
                 ].map(({ Icon, label, href }) => (
                   <a key={label} href={href} aria-label={label}
-                    className="w-10 h-10 border border-charcoal/15 flex items-center justify-center text-charcoal/50 hover:text-sand hover:border-sand transition-all duration-200">
+                    className="w-10 h-10 border border-charcoal/15 flex items-center justify-center text-white/50 hover:text-sand hover:border-sand transition-all duration-200">
                     <Icon size={15} />
                   </a>
                 ))}
@@ -70,8 +70,8 @@ export default function Contact() {
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <CheckCircle size={48} className="text-sage mb-6" />
-                <p className="font-display text-3xl font-light text-charcoal mb-3">Message Sent</p>
-                <p className="font-sans text-charcoal/50 max-w-sm">
+                <p className="font-display text-3xl font-light text-white mb-3">Message Sent</p>
+                <p className="font-sans text-white/50 max-w-sm">
                   Thank you for reaching out. We'll get back to you within 24 hours.
                 </p>
                 <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', subject: '', message: '' }) }}
@@ -83,13 +83,13 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
-                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Full Name *</label>
+                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-3">Full Name *</label>
                     <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                       placeholder="Your full name"
                       className="input-luxury" />
                   </div>
                   <div>
-                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Email Address *</label>
+                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-3">Email Address *</label>
                     <input required type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="your@email.com"
                       className="input-luxury" />
@@ -97,7 +97,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Subject</label>
+                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-3">Subject</label>
                   <select value={form.subject} onChange={e => setForm({ ...form, subject: e.target.value })}
                     className="input-luxury bg-transparent appearance-none cursor-pointer">
                     <option value="">Select a topic</option>
@@ -111,7 +111,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-3">Message *</label>
+                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-3">Message *</label>
                   <textarea required value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                     rows={6} placeholder="Tell us how we can help..."
                     className="input-luxury resize-none" />

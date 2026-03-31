@@ -8,11 +8,11 @@ export default function SectionHeader({ overline, title, subtitle, centered = tr
           {overline}
         </p>
       )}
-      <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl font-light leading-tight ${light ? 'text-cream' : 'text-charcoal'}`}>
+      <h2 className={`font-display text-4xl md:text-5xl lg:text-6xl font-light leading-tight ${light ? 'text-cream' : 'text-white'}`}>
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-4 font-sans text-base md:text-lg font-light max-w-xl ${centered ? 'mx-auto' : ''} ${light ? 'text-cream/60' : 'text-charcoal/60'}`}>
+        <p className={`mt-4 font-sans text-base md:text-lg font-light max-w-xl ${centered ? 'mx-auto' : ''} ${light ? 'text-cream/60' : 'text-white/60'}`}>
           {subtitle}
         </p>
       )}

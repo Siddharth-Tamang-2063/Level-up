@@ -96,7 +96,7 @@ function CategoryCard({ to, image, tag, tagGold, count, name, large }) {
             {name}
           </h3>
           <div className="w-7 h-7 sm:w-8 sm:h-8 border border-white/20 group-hover:border-orange-400 group-hover:bg-orange-400 flex items-center justify-center transition-all duration-300 flex-shrink-0">
-            <ArrowUpRight size={12} className="text-white/50 group-hover:text-black transition-colors" />
+            <ArrowUpRight size={12} className="text-white/50 group-hover:text-white transition-colors" />
           </div>
         </div>
       </div>
@@ -339,7 +339,7 @@ export function FeaturedCollections() {
                   </p>
                 </div>
                 <div className="w-9 h-9 border border-white/15 group-hover:border-orange-400 group-hover:bg-orange-400 flex items-center justify-center transition-all duration-300 flex-shrink-0">
-                  <ArrowUpRight size={13} className="text-white/40 group-hover:text-black transition-colors" />
+                  <ArrowUpRight size={13} className="text-white/40 group-hover:text-white transition-colors" />
                 </div>
               </div>
             </Link>
@@ -450,7 +450,7 @@ export function FeaturedCollections() {
                       </p>
                     </div>
                     <div className="w-9 h-9 border border-white/10 group-hover:border-orange-400 group-hover:bg-orange-400 flex items-center justify-center transition-all duration-300 flex-shrink-0">
-                      <ArrowUpRight size={13} className="text-white/40 group-hover:text-black transition-colors" />
+                      <ArrowUpRight size={13} className="text-white/40 group-hover:text-white transition-colors" />
                     </div>
                   </div>
                 </div>
