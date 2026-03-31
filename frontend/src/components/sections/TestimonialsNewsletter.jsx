@@ -158,29 +158,29 @@ export function Newsletter() {
           Stay Updated
         </p>
 
-        <h2 className="font-display text-4xl md:text-5xl font-light text-white mb-4">
+        <h2 className="font-display text-4xl md:text-5xl font-light text-black/50 mb-4">
           Get New Arrivals &amp; Offers
         </h2>
 
-        <p className="font-sans font-light text-white/60 mb-10 text-lg">
+        <p className="font-sans font-light text-black/50 mb-10 text-lg">
           Be the first to know about new products, sale offers, and special deals.
           No spam, unsubscribe anytime.
         </p>
 
         {submitted ? (
           <div className="py-8">
-            <p className="font-display text-2xl font-light text-white">You're subscribed!</p>
-            <p className="text-sm text-white/50 font-sans mt-2">We'll send you updates soon.</p>
+            <p className="font-display text-2xl font-light text-black/50">You're subscribed!</p>
+            <p className="text-sm text-black/50 font-sans mt-2">We'll send you updates soon.</p>
           </div>
         ) : (
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto text-black/50">
             <input
               type="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Enter your email"
-              className="flex-1 border border-charcoal/20 bg-transparent px-5 py-3.5 font-sans text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-sand transition-colors"
+              className="flex-1 border border-charcoal/20 bg-transparent px-5 py-3.5 font-sans text-sm text-black/50 placeholder:text-white/40 focus:outline-none focus:border-sand transition-colors"
             />
             <button
               onClick={handleSubmit}
@@ -191,7 +191,7 @@ export function Newsletter() {
           </div>
         )}
 
-        <p className="mt-4 text-xs font-sans text-white/30">
+        <p className="mt-4 text-xs font-sans text-black/50">
           No spam. Unsubscribe anytime with one click.
         </p>
 

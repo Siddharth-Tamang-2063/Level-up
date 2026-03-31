@@ -29,7 +29,7 @@ export default function AdminLogin() {
       <div className="relative w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-10">
-          <span className="font-display text-4xl font-light tracking-[0.3em] text-cream">On Pon Collection </span>
+          <span className="font-display text-4xl font-light tracking-[0.3em] text-cream">YS Studio</span>
           <p className="text-xs tracking-ultra uppercase font-sans text-cream/30 mt-2">Admin Portal</p>
         </div>
 
@@ -54,7 +54,7 @@ export default function AdminLogin() {
                   required
                   autoComplete="username"
                   placeholder="Enter your ID"
-                  className="w-full bg-white/5 border border-white/10 pl-10 pr-4 py-3 text-cream text-sm font-sans placeholder:text-cream/20 focus:outline-none focus:border-sand transition-colors"
+                  className="w-full bg-white/5 border border-white/10 pl-10 pr-4 py-3 text-cream text-sm font-sans placeholder:text-cream/30 focus:outline-none focus:border-sand transition-colors"
                 />
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function AdminLogin() {
                   required
                   autoComplete="current-password"
                   placeholder="Enter your password"
-                  className="w-full bg-white/5 border border-white/10 pl-10 pr-12 py-3 text-cream text-sm font-sans placeholder:text-cream/20 focus:outline-none focus:border-sand transition-colors"
+                  className="w-full bg-white/5 border border-white/10 pl-10 pr-12 py-3 text-cream text-sm font-sans placeholder:text-cream/30 focus:outline-none focus:border-sand transition-colors"
                 />
                 <button type="button" onClick={() => setShowPass(!showPass)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-cream/30 hover:text-cream/60 transition-colors">
@@ -106,7 +106,7 @@ export default function AdminLogin() {
 
         {/* Back to store link */}
         <div className="text-center mt-6">
-          <a href="/" className="text-xs font-sans text-cream/20 hover:text-cream/40 transition-colors tracking-widest uppercase">
+          <a href="/" className="text-xs font-sans text-cream/30 hover:text-cream/50 transition-colors tracking-widest uppercase">
             ← Back to Store
           </a>
         </div>

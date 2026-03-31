@@ -31,7 +31,7 @@ export default function AdminLayout({ children }) {
           <div className="px-6 py-6 border-b border-white/5">
             <Link to="/admin" className="flex items-center gap-3">
               <div className="w-8 h-8 bg-sand flex items-center justify-center">
-                <TrendingUp size={14} className="text-white" />
+                <TrendingUp size={14} className="text-black/50 " />
               </div>
               <div>
                 <p className="font-display text-xl font-light text-cream tracking-wider">On Pon Collection </p>
@@ -50,7 +50,7 @@ export default function AdminLayout({ children }) {
                   <Icon size={16} />
                   {label}
                   {badge && (
-                    <span className="ml-auto bg-sand text-white text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full">
+                    <span className="ml-auto bg-sand text-black/50  text-[10px] font-medium w-5 h-5 flex items-center justify-center rounded-full">
                       {badge}
                     </span>
                   )}
@@ -80,28 +80,28 @@ export default function AdminLayout({ children }) {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
         <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 sticky top-0 z-20">
-          <button className="lg:hidden text-white" onClick={() => setSidebarOpen(true)}>
+          <button className="lg:hidden text-black/50 " onClick={() => setSidebarOpen(true)}>
             <Menu size={20} />
           </button>
 
           <div className="hidden lg:block">
-            <p className="font-sans text-xs text-white/40">
+            <p className="font-sans text-xs text-black/50 ">
               {NAV.find(n => n.href === location.pathname)?.label || 'Dashboard'}
             </p>
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            <button className="relative p-2 text-white/50 hover:text-white transition-colors">
+            <button className="relative p-2 text-black/50  hover:text-black transition-colors">
               <Bell size={18} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-400 rounded-full" />
             </button>
             <div className="flex items-center gap-3 pl-3 border-l border-gray-100">
               <div className="w-8 h-8 bg-sand rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-medium font-sans">A</span>
+                <span className="text-black/50 text-xs font-medium font-sans">A</span>
               </div>
               <div className="hidden md:block">
-                <p className="text-xs font-medium font-sans text-white">Admin</p>
-                <p className="text-[10px] text-white/40 font-sans">admin@On Pon Collection fashion.com</p>
+                <p className="text-xs font-medium font-sans text-black/50 ">Admin</p>
+                <p className="text-[10px] text-black/50  font-sans">admin@On Pon Collection fashion.com</p>
               </div>
             </div>
           </div>

@@ -284,16 +284,12 @@ export default function ProductCard({ product, layout = 'grid' }) {
           >
             {product.category}
           </p>
-          <h3
-            className="text-lg md:text-xl font-light leading-tight mb-2"
-            style={{
-              fontFamily: '"Cormorant Garamond", serif',
-              color: hovered ? '#fb923c' : 'rgba(0,0,0,0.8)',
-              transition: 'color 0.3s ease',
-            }}
-          >
-            {product.name}
-          </h3>
+   <h3
+  className="text-lg md:text-xl font-light leading-tight mb-2 text-black/80"
+  style={{ fontFamily: '"Cormorant Garamond", serif' }}
+>
+  {product.name}
+</h3>
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-2">
               <span

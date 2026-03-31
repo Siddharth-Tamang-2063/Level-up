@@ -13,7 +13,7 @@ export function BestSellers() {
       <div className="flex items-end justify-between mb-12">
         <SectionHeader overline="Customer Favorites" title="Best Sellers" centered={false} />
         <Link to="/collection?filter=bestseller"
-          className="hidden md:flex items-center gap-2 text-xs tracking-widest uppercase font-sans font-medium text-white/60 hover:text-sand transition-colors group">
+          className="hidden md:flex items-center gap-2 text-xs tracking-widest uppercase font-sans font-medium text-black/50 hover:text-sand transition-colors group">
           View All
           <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
         </Link>
@@ -56,7 +56,7 @@ export function TrendingProducts() {
           <div className="flex items-center gap-1 border border-charcoal/10 p-1 self-start md:self-auto">
             {tabs.map(tab => (
               <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-                className={`px-5 py-2 text-xs tracking-widest uppercase font-sans font-medium transition-all duration-200 ${activeTab === tab.id ? 'bg-charcoal text-cream' : 'text-white/60 hover:text-white'}`}>
+                className={`px-5 py-2 text-xs tracking-widest uppercase font-sans font-medium transition-all duration-200 ${activeTab === tab.id ? 'bg-charcoal text-cream' : 'text-black/50 hover:text-black/80'}`}>
                 {tab.label}
               </button>
             ))}

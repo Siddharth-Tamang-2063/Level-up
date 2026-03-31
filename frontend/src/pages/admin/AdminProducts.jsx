@@ -47,21 +47,21 @@ export default function AdminProducts() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="font-sans text-2xl font-semibold text-white">Products</h1>
-            <p className="text-sm text-white/50 font-sans mt-1">{products.length} total products</p>
+            <h1 className="font-sans text-2xl font-semibold text-charcoal">Products</h1>
+            <p className="text-sm text-charcoal/50 font-sans mt-1">{products.length} total products</p>
           </div>
           <button onClick={() => { setEditProduct(null); setForm({ name: '', category: 'tshirts', price: '', description: '' }); setShowForm(true) }}
-            className="flex items-center gap-2 bg-charcoal text-cream px-5 py-2.5 text-xs tracking-widest uppercase font-sans font-medium hover:bg-charcoal-800 transition-colors">
+            className="flex items-center gap-2 bg-charcoal text-cream px-5 py-2.5 text-xs tracking-widest uppercase font-sans font-medium hover:bg-charcoal/80 transition-colors">
             <Plus size={14} /> Add Product
           </button>
         </div>
 
         {/* Search */}
         <div className="relative mb-6">
-          <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30" />
+          <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-charcoal/30" />
           <input type="text" value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search products..."
-            className="w-full md:w-80 pl-10 pr-4 py-2.5 bg-white border border-gray-100 rounded text-sm font-sans text-white placeholder:text-white/30 focus:outline-none focus:border-sand transition-colors" />
+            className="w-full md:w-80 pl-10 pr-4 py-2.5 bg-white border border-gray-100 rounded text-sm font-sans text-charcoal placeholder:text-charcoal/30 focus:outline-none focus:border-sand transition-colors" />
         </div>
 
         {/* Products table */}
@@ -71,7 +71,7 @@ export default function AdminProducts() {
               <thead>
                 <tr className="border-b border-gray-50">
                   {['Product', 'Category', 'Price', 'Stock', 'Rating', 'Actions'].map(h => (
-                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-white/40">{h}</th>
+                    <th key={h} className="text-left px-6 py-3 text-[10px] tracking-widest uppercase font-sans font-medium text-charcoal/40">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -82,18 +82,18 @@ export default function AdminProducts() {
                       <div className="flex items-center gap-3">
                         <img src={p.images[0]} alt={p.name} className="w-12 h-14 object-cover bg-cream-200 rounded flex-shrink-0" />
                         <div>
-                          <p className="text-sm font-sans font-medium text-white">{p.name}</p>
+                          <p className="text-sm font-sans font-medium text-charcoal">{p.name}</p>
                           {p.badge && <span className="text-[10px] bg-sand/10 text-sand px-2 py-0.5 rounded font-sans">{p.badge}</span>}
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-xs font-sans capitalize text-white/60 bg-gray-100 px-2.5 py-1 rounded">{p.category}</span>
+                      <span className="text-xs font-sans capitalize text-charcoal/60 bg-gray-100 px-2.5 py-1 rounded">{p.category}</span>
                     </td>
                     <td className="px-6 py-4">
                       <div>
-                        <p className="text-sm font-sans font-medium text-white">${p.price}</p>
-                        {p.originalPrice && <p className="text-xs text-white/40 line-through font-sans">${p.originalPrice}</p>}
+                        <p className="text-sm font-sans font-medium text-charcoal">Rs. {p.price}</p>
+                        {p.originalPrice && <p className="text-xs text-charcoal/40 line-through font-sans">Rs. {p.originalPrice}</p>}
                       </div>
                     </td>
                     <td className="px-6 py-4">
@@ -104,18 +104,18 @@ export default function AdminProducts() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-1">
                         <Star size={12} className="fill-sand text-sand" />
-                        <span className="text-sm font-sans text-white">{p.rating}</span>
-                        <span className="text-xs text-white/30 font-sans">({p.reviews})</span>
+                        <span className="text-sm font-sans text-charcoal">{p.rating}</span>
+                        <span className="text-xs text-charcoal/30 font-sans">({p.reviews})</span>
                       </div>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button onClick={() => handleEdit(p)}
-                          className="w-8 h-8 flex items-center justify-center text-white/50 hover:text-white hover:bg-gray-100 rounded transition-all">
+                          className="w-8 h-8 flex items-center justify-center text-charcoal/50 hover:text-charcoal hover:bg-gray-100 rounded transition-all">
                           <Edit size={14} />
                         </button>
                         <button onClick={() => setDeleteConfirm(p.id)}
-                          className="w-8 h-8 flex items-center justify-center text-white/50 hover:text-red-500 hover:bg-red-50 rounded transition-all">
+                          className="w-8 h-8 flex items-center justify-center text-charcoal/50 hover:text-red-500 hover:bg-red-50 rounded transition-all">
                           <Trash2 size={14} />
                         </button>
                       </div>
@@ -132,19 +132,19 @@ export default function AdminProducts() {
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg w-full max-w-lg p-8 animate-scale-in">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="font-sans font-semibold text-white text-lg">{editProduct ? 'Edit Product' : 'Add New Product'}</h2>
-                <button onClick={() => setShowForm(false)} className="text-white/40 hover:text-white"><X size={18} /></button>
+                <h2 className="font-sans font-semibold text-charcoal text-lg">{editProduct ? 'Edit Product' : 'Add New Product'}</h2>
+                <button onClick={() => setShowForm(false)} className="text-charcoal/40 hover:text-charcoal"><X size={18} /></button>
               </div>
 
               <div className="space-y-5">
                 <div>
-                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-2">Product Name</label>
+                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-2">Product Name</label>
                   <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     className="w-full border border-gray-200 rounded px-4 py-2.5 text-sm font-sans focus:outline-none focus:border-sand transition-colors" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-2">Category</label>
+                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-2">Category</label>
                     <select value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}
                       className="w-full border border-gray-200 rounded px-4 py-2.5 text-sm font-sans focus:outline-none focus:border-sand bg-white">
                       <option value="hoodies">Hoodies</option>
@@ -155,13 +155,13 @@ export default function AdminProducts() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-2">Price ($)</label>
+                    <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-2">Price (Rs.)</label>
                     <input type="number" value={form.price} onChange={e => setForm({ ...form, price: e.target.value })}
                       className="w-full border border-gray-200 rounded px-4 py-2.5 text-sm font-sans focus:outline-none focus:border-sand transition-colors" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-white mb-2">Description</label>
+                  <label className="block text-xs tracking-widest uppercase font-sans font-medium text-charcoal mb-2">Description</label>
                   <textarea value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
                     rows={3}
                     className="w-full border border-gray-200 rounded px-4 py-2.5 text-sm font-sans focus:outline-none focus:border-sand transition-colors resize-none" />
@@ -170,11 +170,11 @@ export default function AdminProducts() {
 
               <div className="flex gap-3 mt-8">
                 <button onClick={handleSave}
-                  className="flex-1 bg-charcoal text-cream py-3 text-xs tracking-widest uppercase font-sans font-medium hover:bg-charcoal-800 transition-colors flex items-center justify-center gap-2">
+                  className="flex-1 bg-charcoal text-cream py-3 text-xs tracking-widest uppercase font-sans font-medium hover:bg-charcoal/80 transition-colors flex items-center justify-center gap-2">
                   <Check size={14} /> {editProduct ? 'Save Changes' : 'Add Product'}
                 </button>
                 <button onClick={() => setShowForm(false)}
-                  className="flex-1 border border-charcoal/20 py-3 text-xs tracking-widest uppercase font-sans font-medium text-white hover:bg-gray-50 transition-colors">
+                  className="flex-1 border border-charcoal/20 py-3 text-xs tracking-widest uppercase font-sans font-medium text-charcoal hover:bg-gray-50 transition-colors">
                   Cancel
                 </button>
               </div>
@@ -189,15 +189,15 @@ export default function AdminProducts() {
               <div className="w-12 h-12 bg-red-50 flex items-center justify-center mx-auto mb-4 rounded-full">
                 <Trash2 size={20} className="text-red-500" />
               </div>
-              <h3 className="font-sans font-semibold text-white mb-2">Delete Product</h3>
-              <p className="text-sm text-white/50 font-sans mb-6">This action cannot be undone.</p>
+              <h3 className="font-sans font-semibold text-charcoal mb-2">Delete Product</h3>
+              <p className="text-sm text-charcoal/50 font-sans mb-6">This action cannot be undone.</p>
               <div className="flex gap-3">
                 <button onClick={() => handleDelete(deleteConfirm)}
                   className="flex-1 bg-red-500 text-white py-2.5 text-xs tracking-widest uppercase font-sans font-medium hover:bg-red-600 transition-colors">
                   Delete
                 </button>
                 <button onClick={() => setDeleteConfirm(null)}
-                  className="flex-1 border border-charcoal/20 py-2.5 text-xs tracking-widest uppercase font-sans font-medium text-white hover:bg-gray-50 transition-colors">
+                  className="flex-1 border border-charcoal/20 py-2.5 text-xs tracking-widest uppercase font-sans font-medium text-charcoal hover:bg-gray-50 transition-colors">
                   Cancel
                 </button>
               </div>
