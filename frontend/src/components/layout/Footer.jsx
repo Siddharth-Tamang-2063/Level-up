@@ -114,18 +114,18 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-cream/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-sans text-cream/30">© 2025 On Pon Collection . All rights reserved.</p>
+          <p className="text-xs font-sans text-white/80">© 2025 On Pon Collection. All rights reserved.</p>
 
           <div className="flex items-center gap-6">
             {['Privacy Policy', 'Terms of Service', 'Exchange Policy'].map(t => (
-              <Link key={t} to="/contact" className="text-xs font-sans text-cream/30 hover:text-cream/60 transition-colors">{t}</Link>
+              <Link key={t} to="/contact" className="text-xs font-sans text-white/80 hover:text-white transition-colors">{t}</Link>
             ))}
           </div>
 
           {/* Payment icons */}
           <div className="flex items-center gap-2">
             {['COD', 'eSewa', 'Khalti'].map(p => (
-              <span key={p} className="border border-cream/10 px-2 py-1 text-[10px] font-mono text-cream/30">{p}</span>
+              <span key={p} className="border border-cream/10 px-2 py-1 text-[10px] font-mono text-white/80">{p}</span>
             ))}
           </div>
         </div>
