@@ -56,19 +56,19 @@ export default function ProductPage() {
       {/* Breadcrumb — desktop */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
         <div className="hidden md:flex items-center gap-2 text-xs font-sans text-white/40">
-          <Link to="/" className="hover:text-white transition-colors">Home</Link>
+          <Link to="/" className="hover:text-white/60 transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/collection" className="hover:text-white transition-colors">Collection</Link>
+          <Link to="/collection" className="hover:text-white/60 transition-colors">Collection</Link>
           <span>/</span>
-          <Link to={`/collection?category=${product.category}`} className="hover:text-white capitalize transition-colors">{product.category}</Link>
+          <Link to={`/collection?category=${product.category}`} className="hover:text-white/60 capitalize transition-colors">{product.category}</Link>
           <span>/</span>
-          <span className="text-white">{product.name}</span>
+          <span className="text-white/60">{product.name}</span>
         </div>
 
         {/* Back button — mobile only */}
         <button
           onClick={() => navigate(-1)}
-          className="md:hidden flex items-center gap-1.5 text-xs tracking-widest uppercase font-sans font-medium text-white/60 hover:text-white transition-colors py-1"
+          className="md:hidden flex items-center gap-1.5 text-xs tracking-widest uppercase font-sans font-medium text-white/40 hover:text-white/60 transition-colors py-1"
         >
           <ArrowLeft size={14} />
           Back
@@ -138,17 +138,17 @@ export default function ProductPage() {
               <StarRating rating={product.rating} reviews={product.reviews} />
             </div>
 
-            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-white leading-tight mb-4">
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-white/90 leading-tight mb-4">
               {product.name}
             </h1>
 
             {/* Price */}
             <div className="flex items-baseline gap-3 mb-8">
-              <span className="font-sans text-2xl font-medium text-white">Rs. {product.price.toLocaleString()}</span>
+              <span className="font-sans text-2xl font-medium text-white/90">Rs. {product.price.toLocaleString()}</span>
               {product.originalPrice && (
                 <>
                   <span className="font-sans text-lg text-white/40 line-through">Rs. {product.originalPrice.toLocaleString()}</span>
-                  <span className="text-sm font-sans text-red-500 font-medium">Save {discount}%</span>
+                  <span className="text-sm font-sans text-red-400 font-medium">Save {discount}%</span>
                 </>
               )}
             </div>
@@ -156,13 +156,13 @@ export default function ProductPage() {
             {/* Color selector */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-3">
-                <p className="text-xs tracking-widest uppercase font-sans font-medium text-white">Color</p>
+                <p className="text-xs tracking-widest uppercase font-sans font-medium text-white/60">Color</p>
                 {selectedColor && <p className="text-sm font-sans text-white/60">{selectedColor}</p>}
               </div>
               <div className="flex items-center gap-2 flex-wrap">
                 {product.colors.map(color => (
                   <button key={color} onClick={() => setSelectedColor(color)}
-                    className={`px-4 py-2 text-xs font-sans border transition-all duration-200 ${selectedColor === color ? 'border-charcoal bg-charcoal/5 font-medium text-white' : 'border-charcoal/20 text-white/60 hover:border-charcoal hover:text-white'}`}>
+                    className={`px-4 py-2 text-xs font-sans border transition-all duration-200 ${selectedColor === color ? 'border-white/60 bg-white/5 font-medium text-white/90' : 'border-white/20 text-white/40 hover:border-white/40 hover:text-white/60'}`}>
                     {color}
                   </button>
                 ))}
@@ -172,7 +172,7 @@ export default function ProductPage() {
             {/* Size selector */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-3">
-                <p className={`text-xs tracking-widest uppercase font-sans font-medium ${sizeError ? 'text-red-500' : 'text-white'}`}>
+                <p className={`text-xs tracking-widest uppercase font-sans font-medium ${sizeError ? 'text-red-400' : 'text-white/60'}`}>
                   {sizeError ? 'Please select a size' : 'Size'}
                 </p>
                 <button className="text-xs text-sand underline underline-offset-2 font-sans">Size Guide</button>
@@ -180,7 +180,7 @@ export default function ProductPage() {
               <div className="flex items-center gap-2 flex-wrap">
                 {product.sizes.map(size => (
                   <button key={size} onClick={() => setSelectedSize(size)}
-                    className={`w-12 h-12 text-sm font-sans border transition-all duration-200 flex items-center justify-center ${selectedSize === size ? 'border-charcoal bg-charcoal text-cream' : 'border-charcoal/20 text-white hover:border-charcoal'}`}>
+                    className={`w-12 h-12 text-sm font-sans border transition-all duration-200 flex items-center justify-center ${selectedSize === size ? 'border-white/60 bg-white/10 text-white/90' : 'border-white/20 text-white/40 hover:border-white/40 hover:text-white/60'}`}>
                     {size}
                   </button>
                 ))}
@@ -189,24 +189,24 @@ export default function ProductPage() {
 
             {/* Qty + Add to Cart */}
             <div className="flex items-center gap-3 mb-8">
-              <div className="flex items-center border border-charcoal/20">
+              <div className="flex items-center border border-white/20">
                 <button onClick={() => setQty(q => Math.max(1, q - 1))}
-                  className="w-11 h-12 flex items-center justify-center text-white/60 hover:text-white hover:bg-cream-200 transition-colors">
+                  className="w-11 h-12 flex items-center justify-center text-white/40 hover:text-white/60 hover:bg-white/5 transition-colors">
                   <Minus size={14} />
                 </button>
-                <span className="w-10 text-center font-sans text-sm text-white">{qty}</span>
+                <span className="w-10 text-center font-sans text-sm text-white/60">{qty}</span>
                 <button onClick={() => setQty(q => q + 1)}
-                  className="w-11 h-12 flex items-center justify-center text-white/60 hover:text-white hover:bg-cream-200 transition-colors">
+                  className="w-11 h-12 flex items-center justify-center text-white/40 hover:text-white/60 hover:bg-white/5 transition-colors">
                   <Plus size={14} />
                 </button>
               </div>
 
               <button onClick={handleAddToCart}
-                className={`flex-1 h-12 flex items-center justify-center gap-3 text-sm tracking-widest uppercase font-sans font-medium transition-all duration-300 ${addedToCart ? 'bg-sage text-white' : 'bg-charcoal text-cream hover:bg-charcoal-800'}`}>
+                className={`flex-1 h-12 flex items-center justify-center gap-3 text-sm tracking-widest uppercase font-sans font-medium transition-all duration-300 ${addedToCart ? 'bg-sage text-white/90' : 'bg-charcoal text-cream hover:bg-charcoal/80'}`}>
                 {addedToCart ? <><Check size={16} /> Added to Cart</> : <><ShoppingBag size={16} /> Add to Cart</>}
               </button>
 
-              <button className="w-12 h-12 border border-charcoal/20 flex items-center justify-center text-white/60 hover:text-red-400 hover:border-red-200 transition-all">
+              <button className="w-12 h-12 border border-white/20 flex items-center justify-center text-white/40 hover:text-red-400 hover:border-red-400/30 transition-all">
                 <Heart size={16} />
               </button>
             </div>
@@ -221,56 +221,59 @@ export default function ProductPage() {
             )}
 
             {/* Product meta tabs */}
-            <div className="border-t border-charcoal/10 pt-6">
-              <div className="flex gap-6 mb-6 border-b border-charcoal/10">
+            <div className="border-t border-white/10 pt-6">
+              <div className="flex gap-6 mb-6 border-b border-white/10">
                 {['description', 'details', 'reviews'].map(tab => (
                   <button key={tab} onClick={() => setActiveTab(tab)}
-                    className={`pb-3 text-xs tracking-widest uppercase font-sans font-medium capitalize border-b-2 -mb-px transition-colors ${activeTab === tab ? 'border-charcoal text-white' : 'border-transparent text-white/40 hover:text-white'}`}>
+                    className={`pb-3 text-xs tracking-widest uppercase font-sans font-medium capitalize border-b-2 -mb-px transition-colors ${activeTab === tab ? 'border-white/60 text-white/90' : 'border-transparent text-white/40 hover:text-white/60'}`}>
                     {tab} {tab === 'reviews' && `(${REVIEWS.length})`}
                   </button>
                 ))}
               </div>
 
-              {activeTab === 'description' && (
-                <p className="font-sans text-sm leading-relaxed text-white/70 font-light">{product.description}</p>
-              )}
+              {/* Tab content — bordered panel */}
+              <div className="border border-white/10 rounded p-5">
+                {activeTab === 'description' && (
+                  <p className="font-sans text-sm leading-relaxed text-white/60 font-light">{product.description}</p>
+                )}
 
-              {activeTab === 'details' && (
-                <ul className="space-y-2">
-                  {product.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm font-sans text-white/70">
-                      <span className="w-1 h-1 bg-sand rounded-full mt-2 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              )}
+                {activeTab === 'details' && (
+                  <ul className="space-y-2">
+                    {product.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm font-sans text-white/60">
+                        <span className="w-1 h-1 bg-sand rounded-full mt-2 flex-shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-              {activeTab === 'reviews' && (
-                <div className="space-y-6">
-                  <div className="flex items-center gap-6 pb-6 border-b border-charcoal/5">
-                    <div className="text-center">
-                      <p className="font-display text-5xl font-light text-white">{product.rating}</p>
-                      <StarRating rating={product.rating} showCount={false} />
-                      <p className="text-xs text-white/50 font-sans mt-1">{product.reviews} reviews</p>
-                    </div>
-                  </div>
-                  {REVIEWS.map(r => (
-                    <div key={r.id} className="pb-5 border-b border-charcoal/5 last:border-0">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-sans font-medium text-sm text-white">{r.author}</p>
-                        <p className="text-xs text-white/40 font-sans">{r.date}</p>
+                {activeTab === 'reviews' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-6 pb-6 border-b border-white/10">
+                      <div className="text-center">
+                        <p className="font-display text-5xl font-light text-white/90">{product.rating}</p>
+                        <StarRating rating={product.rating} showCount={false} />
+                        <p className="text-xs text-white/40 font-sans mt-1">{product.reviews} reviews</p>
                       </div>
-                      <StarRating rating={r.rating} showCount={false} size="sm" />
-                      <p className="mt-2 text-sm font-sans text-white/70 font-light leading-relaxed">{r.text}</p>
                     </div>
-                  ))}
-                </div>
-              )}
+                    {REVIEWS.map(r => (
+                      <div key={r.id} className="pb-5 border-b border-white/10 last:border-0">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-sans font-medium text-sm text-white/90">{r.author}</p>
+                          <p className="text-xs text-white/40 font-sans">{r.date}</p>
+                        </div>
+                        <StarRating rating={r.rating} showCount={false} size="sm" />
+                        <p className="mt-2 text-sm font-sans text-white/60 font-light leading-relaxed">{r.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Trust badges */}
-            <div className="mt-8 pt-6 border-t border-charcoal/10 grid grid-cols-3 gap-4">
+            <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
               {[
                 { icon: '🚚', label: 'Fast Delivery', sub: 'All over Nepal' },
                 { icon: '🔄', label: 'Easy Exchange', sub: 'Hassle-free process' },
@@ -278,7 +281,7 @@ export default function ProductPage() {
               ].map(b => (
                 <div key={b.label} className="text-center">
                   <div className="text-lg mb-1">{b.icon}</div>
-                  <p className="text-xs tracking-wider uppercase font-sans font-medium text-white">{b.label}</p>
+                  <p className="text-xs tracking-wider uppercase font-sans font-medium text-white/60">{b.label}</p>
                   <p className="text-xs font-sans text-white/40 mt-0.5">{b.sub}</p>
                 </div>
               ))}
@@ -292,10 +295,10 @@ export default function ProductPage() {
             <div className="flex items-end justify-between mb-10">
               <div>
                 <p className="text-xs tracking-ultra uppercase font-sans text-sand mb-2">You May Also Like</p>
-                <h2 className="font-display text-3xl md:text-4xl font-light text-white">Related Products</h2>
+                <h2 className="font-display text-3xl md:text-4xl font-light text-white/90">Related Products</h2>
               </div>
               <Link to={`/collection?category=${product.category}`}
-                className="text-xs tracking-widest uppercase font-sans text-white/50 hover:text-sand transition-colors hidden md:block">
+                className="text-xs tracking-widest uppercase font-sans text-white/40 hover:text-sand transition-colors hidden md:block">
                 View All →
               </Link>
             </div>

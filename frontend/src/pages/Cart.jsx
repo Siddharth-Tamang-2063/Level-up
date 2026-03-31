@@ -136,7 +136,7 @@ export default function Cart() {
 
         {/* Order Summary */}
         <div className="lg:sticky lg:top-24 h-fit">
-          <div className="bg-cream-100 border border-charcoal/10 p-6 md:p-8">
+          <div className="bg-black/50 border border-charcoal/10 p-6 md:p-8">
             <h2 className="font-display text-xl font-light text-white mb-6">Order Summary</h2>
 
             {/* Line items */}
@@ -157,7 +157,7 @@ export default function Cart() {
               <span className="font-display text-2xl font-light text-white">Rs. {total.toLocaleString()}</span>
             </div>
 
-           <button onClick={() => navigate('/checkout')} className="w-full mt-6 flex items-center justify-center gap-2 bg-charcoal text-cream py-4 text-xs tracking-widest uppercase font-sans font-medium hover:bg-charcoal/80 transition-colors">
+           <button onClick={() => navigate('/checkout')} className="w-full mt-6 flex items-center justify-center gap-2 bg-white/80 text-black/80 py-4 text-xs tracking-widest uppercase font-sans font-medium hover:bg-white transition-colors">
   Checkout <ArrowRight size={14} />
 </button>
 
